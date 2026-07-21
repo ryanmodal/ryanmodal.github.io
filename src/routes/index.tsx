@@ -580,6 +580,50 @@ function Reviews() {
   );
 }
 
+/* ---------------- Instagram Feed ---------------- */
+function InstagramFeed() {
+  const handle = "modal.esquadrias";
+  const profileUrl = `https://www.instagram.com/${handle}/`;
+  return (
+    <section id="instagram" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <SectionHeader
+        eyebrow="Nosso Instagram"
+        title="Acompanhe nossos projetos"
+        desc="Veja fotos reais de esquadrias, portas e janelas instaladas por nossa equipe."
+        center
+      />
+      <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_360px]">
+        <div className="overflow-hidden rounded-2xl border border-border bg-card">
+          <iframe
+            src={`https://www.instagram.com/${handle}/embed`}
+            title={`Instagram @${handle}`}
+            className="h-[720px] w-full"
+            loading="lazy"
+            frameBorder={0}
+            scrolling="no"
+            allow="encrypted-media"
+          />
+        </div>
+        <aside className="flex flex-col justify-center gap-4 rounded-2xl border border-border bg-surface p-8">
+          <div className="text-sm font-semibold uppercase tracking-wider text-cta">@{handle}</div>
+          <h3 className="text-2xl font-bold text-foreground">Siga a Modal Esquadrias</h3>
+          <p className="text-sm text-muted-foreground">
+            Fotos de instalações, bastidores da fábrica e novidades em alumínio sob medida. Toque em uma publicação para ver no Instagram.
+          </p>
+          <a
+            href={profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-lg bg-cta px-5 py-3 font-semibold text-cta-foreground transition hover:opacity-90"
+          >
+            Abrir no Instagram
+          </a>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- FAQ ---------------- */
 function FAQ() {
   const faqs = [
