@@ -62,8 +62,12 @@ function TopBar() {
     <div className="hidden bg-primary text-primary-foreground md:block">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs">
         <div className="flex items-center gap-5">
-          <span className="inline-flex items-center gap-1.5">
-            <Clock className="h-3.5 w-3.5" /> Seg a Sáb · 08:00–18:30
+          <span className="inline-flex items-center gap-1.5 whitespace-pre-line text-left">
+            <Clock className="h-3.5 w-3.5 shrink-0" />
+            <span>
+              Seg a Sex · 09:00 – 17:30{"\n"}
+              Sábado · 09:00 – 12:00
+            </span>
           </span>
           <span className="inline-flex items-center gap-1.5">
             <MapPin className="h-3.5 w-3.5" /> Franco da Rocha & Região Metropolitana de SP
