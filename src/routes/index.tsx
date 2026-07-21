@@ -85,9 +85,13 @@ function Header() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 md:flex md:justify-between">
         <a href="#top" className="flex min-w-0 items-center gap-2">
-          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary text-primary-foreground">
-            <span className="font-display text-lg font-extrabold">M</span>
-          </div>
+          <img
+            src={logoAsset.url}
+            alt="Modal Esquadrias"
+            className="h-10 w-10 shrink-0 rounded-lg object-contain"
+            width={40}
+            height={40}
+          />
           <div className="min-w-0 leading-tight">
             <div className="truncate font-display text-lg font-extrabold text-foreground">
               Modal Esquadrias
