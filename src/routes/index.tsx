@@ -47,6 +47,7 @@ function Home() {
         <QuoteSection />
         <Gallery />
         <Reviews />
+        <InstagramFeed />
         <FAQ />
         <LocationCTA />
       </main>
