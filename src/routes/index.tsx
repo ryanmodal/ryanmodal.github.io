@@ -64,10 +64,7 @@ function TopBar() {
         <div className="flex items-center gap-5">
           <span className="inline-flex items-center gap-1.5 whitespace-pre-line text-left">
             <Clock className="h-3.5 w-3.5 shrink-0" />
-            <span>
-              Seg a Sex · 09:00 – 17:30{"\n"}
-              Sábado · 09:00 – 12:00
-            </span>
+            <span>{"Seg a Sex · 09:00 – 17:30\nSábado · 09:00 – 12:00\n"}</span>
           </span>
           <span className="inline-flex items-center gap-1.5">
             <MapPin className="h-3.5 w-3.5" /> Franco da Rocha & Região Metropolitana de SP
