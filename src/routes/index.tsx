@@ -19,6 +19,7 @@ import heroImg from "@/assets/hero-esquadrias.jpg";
 import janelaImg from "@/assets/product-janela.jpg";
 import boxImg from "@/assets/product-box.jpg";
 import portaImg from "@/assets/product-porta.jpg";
+import logoAsset from "@/assets/logo-modal-esquadrias.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
