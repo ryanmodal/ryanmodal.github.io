@@ -61,8 +61,8 @@
   --brand: oklch(0.55 0.14 245);            /* trust blue */
   --brand-foreground: oklch(0.99 0.005 240);
 
-  --cta: oklch(0.72 0.18 55);               /* warm orange for CTAs */
-  --cta-foreground: oklch(0.15 0.02 60);
+  --cta: oklch(0.62 0.18 245);              /* vibrant blue for CTAs */
+  --cta-foreground: oklch(0.99 0.005 240);
 
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: oklch(0.99 0 0);
