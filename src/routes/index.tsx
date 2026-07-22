@@ -492,7 +492,7 @@ function Field({
 
 /* ---------------- Gallery ---------------- */
 function Gallery() {
-  const imgs = [heroAsset.url, janelaImg, portaImg, boxImg, heroAsset.url, portaImg];
+  const imgs = [heroAsset.url, janelaImg, fotoModal1.url, fotoModal2.url, fotoModal3.url, fotoModal4.url];
   return (
     <section id="galeria" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
       <SectionHeader
