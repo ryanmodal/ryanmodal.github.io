@@ -20,6 +20,10 @@ import janelaImg from "@/assets/product-janela.jpg";
 import boxImg from "@/assets/product-box.jpg";
 import portaImg from "@/assets/product-porta.jpg";
 import logoAsset from "@/assets/logo-modal-esquadrias.jpeg.asset.json";
+import fotoModal1 from "@/assets/foto-modal-1.jpg.asset.json";
+import fotoModal2 from "@/assets/foto-modal-2.jpg.asset.json";
+import fotoModal3 from "@/assets/foto-modal-3.jpg.asset.json";
+import fotoModal4 from "@/assets/foto-modal-4.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
