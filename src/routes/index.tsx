@@ -17,6 +17,7 @@ import {
 
 import heroAsset from "@/assets/modal-site.jpg.asset.json";
 import janelaImg from "@/assets/product-janela.jpg";
+import fotoModal5 from "@/assets/foto-modal-5.jpg.asset.json";
 import boxImg from "@/assets/product-box.jpg";
 import portaImg from "@/assets/product-porta.jpg";
 import logoAsset from "@/assets/logo-modal-esquadrias.jpeg.asset.json";
@@ -492,7 +493,14 @@ function Field({
 
 /* ---------------- Gallery ---------------- */
 function Gallery() {
-  const imgs = [heroAsset.url, janelaImg, fotoModal1.url, fotoModal2.url, fotoModal3.url, fotoModal4.url];
+  const imgs = [
+    { src: heroAsset.url, alt: "Esquadrias de alumínio pretas em área externa com piscina e acabamento moderno" },
+    { src: fotoModal5.url, alt: "Fachada de casa com janelas de alumínio branco sob medida" },
+    { src: fotoModal1.url, alt: "Janela de alumínio branco com persianas integradas em bancada de granito" },
+    { src: fotoModal2.url, alt: "Portas de alumínio pretas de correr integradas à área de lazer com piscina" },
+    { src: fotoModal3.url, alt: "Cobertura de alumínio branco com policarbonato em área externa" },
+    { src: fotoModal4.url, alt: "Armário de cozinha com portas de alumínio marrom em ripado sob medida" },
+  ];
   return (
     <section id="galeria" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
       <SectionHeader
@@ -501,7 +509,7 @@ function Gallery() {
         desc="Uma amostra dos serviços recentes da Modal Esquadrias em residências e comércios."
       />
       <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
-        {imgs.map((src, i) => (
+        {imgs.map((item, i) => (
           <div
             key={i}
             className={`overflow-hidden rounded-xl bg-muted ${
@@ -509,8 +517,8 @@ function Gallery() {
             }`}
           >
             <img
-              src={src}
-              alt={`Projeto Modal Esquadrias ${i + 1}`}
+              src={item.src}
+              alt={item.alt}
               loading="lazy"
               width={1200}
               height={1200}
