@@ -20,6 +20,10 @@ import janelaImg from "@/assets/product-janela.jpg";
 import boxImg from "@/assets/product-box.jpg";
 import portaImg from "@/assets/product-porta.jpg";
 import logoAsset from "@/assets/logo-modal-esquadrias.jpeg.asset.json";
+import fotoModal1 from "@/assets/foto-modal-1.jpg.asset.json";
+import fotoModal2 from "@/assets/foto-modal-2.jpg.asset.json";
+import fotoModal3 from "@/assets/foto-modal-3.jpg.asset.json";
+import fotoModal4 from "@/assets/foto-modal-4.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -488,7 +492,7 @@ function Field({
 
 /* ---------------- Gallery ---------------- */
 function Gallery() {
-  const imgs = [heroAsset.url, janelaImg, portaImg, boxImg, heroAsset.url, portaImg];
+  const imgs = [heroAsset.url, janelaImg, fotoModal1.url, fotoModal2.url, fotoModal3.url, fotoModal4.url];
   return (
     <section id="galeria" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
       <SectionHeader
