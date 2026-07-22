@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 import heroAsset from "@/assets/modal-site.jpg.asset.json";
-import janelaImg from "@/assets/product-janela.jpg";
+import fotoModal5 from "@/assets/foto-modal-5.jpg.asset.json";
 import boxImg from "@/assets/product-box.jpg";
 import portaImg from "@/assets/product-porta.jpg";
 import logoAsset from "@/assets/logo-modal-esquadrias.jpeg.asset.json";
