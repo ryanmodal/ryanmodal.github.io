@@ -15,7 +15,7 @@ import {
   Quote,
 } from "lucide-react";
 
-import heroImg from "@/assets/hero-esquadrias.jpg";
+import heroAsset from "@/assets/foto-capa-site.jpg.asset.json";
 import janelaImg from "@/assets/product-janela.jpg";
 import boxImg from "@/assets/product-box.jpg";
 import portaImg from "@/assets/product-porta.jpg";
@@ -137,8 +137,8 @@ function Hero() {
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src={heroImg}
-          alt="Esquadrias de alumínio pretas com vidros grandes em residência moderna"
+          src={heroAsset.url}
+          alt="Residência moderna com esquadrias e portão de alumínio sob medida"
           className="h-full w-full object-cover"
           width={1600}
           height={1200}
@@ -488,7 +488,7 @@ function Field({
 
 /* ---------------- Gallery ---------------- */
 function Gallery() {
-  const imgs = [heroImg, janelaImg, portaImg, boxImg, heroImg, portaImg];
+  const imgs = [heroAsset.url, janelaImg, portaImg, boxImg, heroAsset.url, portaImg];
   return (
     <section id="galeria" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
       <SectionHeader
