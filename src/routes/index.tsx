@@ -15,7 +15,7 @@ import {
   Quote,
 } from "lucide-react";
 
-import heroAsset from "@/assets/foto-capa-site.jpg.asset.json";
+import heroAsset from "@/assets/modal-site.jpg.asset.json";
 import janelaImg from "@/assets/product-janela.jpg";
 import boxImg from "@/assets/product-box.jpg";
 import portaImg from "@/assets/product-porta.jpg";
@@ -138,7 +138,7 @@ function Hero() {
       <div className="absolute inset-0">
         <img
           src={heroAsset.url}
-          alt="Residência moderna com esquadrias e portão de alumínio sob medida"
+          alt="Esquadrias de alumínio pretas em área externa com piscina e acabamento moderno"
           className="h-full w-full object-cover"
           width={1600}
           height={1200}
