@@ -812,8 +812,8 @@ function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:px-6">
-          <div>© {new Date().getFullYear()} Modal Esquadrias. Todos os direitos reservados.</div>
-          <div>CNPJ / Franco da Rocha - SP</div>
+          <div>© {new Date().getFullYear()} Modal Esquadrias Ltda. Todos os direitos reservados.</div>
+          <div>CNPJ 35.508.486/0001-58 / Franco da Rocha - SP</div>
         </div>
       </div>
     </footer>
