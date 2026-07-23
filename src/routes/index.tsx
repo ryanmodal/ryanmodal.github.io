@@ -641,7 +641,7 @@ function FAQ() {
   const faqs = [
     {
       q: "Qual o prazo de fabricação e instalação?",
-      a: "Depende do volume, mas a maioria dos projetos residenciais fica pronta entre 10 e 20 dias úteis após aprovação.",
+      a: "O prazo de fabricação e instalação é de acordo com a complexidade do seu projeto, porém garantimos que será no menor tempo possível :)",
     },
     {
       q: "Quais regiões vocês atendem?",
