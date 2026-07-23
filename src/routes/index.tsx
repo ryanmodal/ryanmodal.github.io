@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import {
   Phone,
   MapPin,
@@ -550,61 +550,37 @@ function Gallery() {
   );
 }
 
-/* ---------------- Reviews ---------------- */
+/* ---------------- Reviews (ElfSight Google Reviews) ---------------- */
 function Reviews() {
-  const reviews = [
-    {
-      name: "Rosangela Silva",
-      when: "7 meses atrás",
-      text: "Serviço excelente da Modal Esquadrias! A instalação dos 2 box ficou ótima, com ótimo acabamento e tudo entregue no prazo. Profissionais cuidadosos e caprichosos. Recomendo!",
-    },
-    {
-      name: "Fabiano Gonzales",
-      when: "1 ano atrás",
-      text: "Excelente atendimento combinado com qualidade, atenção, criatividade, comprometimento e sobretudo confiabilidade. Leandro e seu time são muito atenciosos. Recomendo fortemente!",
-    },
-    {
-      name: "Firmino Junior",
-      when: "1 mês atrás",
-      text: "Excelente serviço. Recomendo para quem quiser um serviço de qualidade.",
-    },
-  ];
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (document.getElementById("elfsight-platform")) return;
+    const script = document.createElement("script");
+    script.id = "elfsight-platform";
+    script.src = "https://elfsightcdn.com/platform.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <section id="avaliacoes" className="bg-surface">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <div className="grid gap-10 md:grid-cols-[1fr_2fr]">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-brand">
-              Avaliações
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold sm:text-4xl">
-              5,0 estrelas de <span className="text-brand">72 clientes</span>
-            </h2>
-            <div className="mt-4 flex items-center gap-1 text-cta">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 fill-current" />
-              ))}
-            </div>
-            <p className="mt-4 text-muted-foreground">
-              A confiança dos clientes é o nosso maior orgulho. Veja o que dizem sobre os serviços
-              da Modal Esquadrias no Google.
-            </p>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
-            {reviews.map((r) => (
-              <blockquote
-                key={r.name}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm"
-              >
-                <Quote className="h-6 w-6 text-brand/40" />
-                <p className="mt-3 text-sm leading-relaxed text-foreground">"{r.text}"</p>
-                <footer className="mt-4 border-t border-border pt-3">
-                  <div className="text-sm font-semibold text-foreground">{r.name}</div>
-                  <div className="text-xs text-muted-foreground">{r.when}</div>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
+        <div className="text-center">
+          <span className="text-xs font-semibold uppercase tracking-wider text-brand">
+            Avaliações
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-extrabold sm:text-4xl">
+            O que dizem nossos clientes
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            Avaliações reais do Google Meu Negócio, atualizadas automaticamente.
+          </p>
+        </div>
+        <div className="mt-10">
+          <div
+            className="elfsight-app-28c9819d-586c-42d3-85dc-7ad3eb9b09a2"
+            data-elfsight-app-lazy
+          />
         </div>
       </div>
     </section>
