@@ -702,7 +702,9 @@ function LocationCTA() {
             </li>
             <li className="flex items-start gap-3">
               <Clock className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
-              <span className="text-foreground">Segunda a sábado · 08:00 às 18:30</span>
+              <span className="whitespace-pre-line text-foreground">
+                {`Segunda a Sexta · 08:30 às 17:30\nSábado · 09:00 ás 12:00\u00a0`}
+              </span>
             </li>
           </ul>
           <div className="mt-8 flex flex-wrap gap-3">
