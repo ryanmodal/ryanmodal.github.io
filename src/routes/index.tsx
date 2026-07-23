@@ -70,7 +70,7 @@ function TopBar() {
         <div className="flex items-center gap-5">
           <span className="inline-flex items-center gap-1.5 whitespace-pre-line text-left">
             <Clock className="h-3.5 w-3.5 shrink-0" />
-            <span>{"Seg a Sex · 09:00 – 17:30\nSábado · 09:00 – 12:00\n"}</span>
+            <span>{"Seg a Sex · 08:30 – 17:30\nSábado · 08:30 – 13:00\n"}</span>
           </span>
           <span className="inline-flex items-center gap-1.5">
             <MapPin className="h-3.5 w-3.5" /> Franco da Rocha & Região Metropolitana de SP
@@ -165,8 +165,8 @@ function Hero() {
             <span className="text-cta">Franco da Rocha</span>.
           </h1>
           <p className="mt-5 max-w-xl text-base text-white/85 sm:text-lg">
-            Janelas, portas, box, fachadas e coberturas com fabricação própria, instalação
-            profissional e prazo cumprido. Orçamento sem compromisso.
+            Janelas, portas, box com fabricação própria, instalação profissional e prazo
+            cumprido. Orçamento sem compromisso.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -186,7 +186,7 @@ function Hero() {
 
           <ul className="mt-8 grid grid-cols-2 gap-3 text-sm text-white/90 sm:grid-cols-3">
             {[
-              "Medição sem custo",
+              "Garantia de 3 anos",
               "Fabricação própria",
               "Instalação garantida",
             ].map((t) => (
@@ -208,9 +208,9 @@ function Hero() {
 /* ---------------- Trust strip ---------------- */
 function TrustStrip() {
   const items = [
-    { icon: ShieldCheck, label: "Garantia por escrito" },
+    { icon: ShieldCheck, label: "Oferecemos Garantia !\u00a0" },
     { icon: Hammer, label: "Fabricação própria" },
-    { icon: Ruler, label: "Medição gratuita" },
+    { icon: Ruler, label: "Medimos em sua Residência\n" },
     { icon: Truck, label: "Entrega e instalação" },
   ];
   return (
@@ -238,7 +238,7 @@ function Services() {
       img: janelaImg,
     },
     {
-      title: "Portas e vidros",
+      title: "Portas de alumínio",
       desc: "Portas de correr, pivotantes e sociais. Vidros temperados e laminados.",
       img: portaImg,
     },
@@ -292,7 +292,7 @@ function Services() {
 function Process() {
   const steps = [
     { n: "01", t: "Contato", d: "Você liga ou envia o pedido pelo formulário. Respondemos no mesmo dia." },
-    { n: "02", t: "Medição", d: "Agendamos visita técnica gratuita no local da obra." },
+    { n: "02", t: "Medição", d: "Agendamos visita técnica no local da obra mediante a conversa." },
     { n: "03", t: "Projeto & orçamento", d: "Enviamos proposta detalhada com prazo e valores fixos." },
     { n: "04", t: "Fabricação & instalação", d: "Produção própria, entrega e instalação com equipe treinada." },
   ];
