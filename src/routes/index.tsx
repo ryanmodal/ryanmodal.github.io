@@ -451,7 +451,6 @@ function QuoteCard({ compact = false }: { compact?: boolean }) {
             <option>Janelas</option>
             <option>Portas</option>
             <option>Box para banheiro</option>
-            <option>Fachada / cobertura</option>
             <option>Outros</option>
           </select>
         </div>
