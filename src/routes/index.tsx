@@ -640,10 +640,6 @@ function InstagramFeed() {
 function FAQ() {
   const faqs = [
     {
-      q: "Vocês fazem medição gratuita?",
-      a: "Sim. Agendamos uma visita técnica sem custo para medir e entender o projeto antes do orçamento.",
-    },
-    {
       q: "Qual o prazo de fabricação e instalação?",
       a: "Depende do volume, mas a maioria dos projetos residenciais fica pronta entre 10 e 20 dias úteis após aprovação.",
     },
