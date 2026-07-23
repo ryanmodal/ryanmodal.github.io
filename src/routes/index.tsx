@@ -235,17 +235,17 @@ function Services() {
     {
       title: "Janelas de alumínio",
       desc: "Maxim-ar, correr, camarão e basculantes. Linhas Suprema, Gold e Reforçada.",
-      img: janelaImg,
+      img: janelaImg.url,
     },
     {
       title: "Portas de alumínio",
       desc: "Portas de correr, pivotantes e sociais. Vidros temperados e laminados.",
-      img: portaImg,
+      img: portaImg.url,
     },
     {
       title: "Box para banheiro",
       desc: "Box de correr e articulado, vidro incolor, fumê ou temperado 8mm.",
-      img: boxImg,
+      img: boxImg.url,
     },
   ];
   return (
