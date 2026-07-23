@@ -764,9 +764,11 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
-            <div className="grid h-10 w-10 place-items-center rounded-lg bg-cta text-cta-foreground">
-              <span className="font-display text-lg font-extrabold">M</span>
-            </div>
+            <img
+              src={logoAsset.url}
+              alt="Logo Modal Esquadrias"
+              className="h-10 w-10 rounded-lg bg-white object-contain p-1"
+            />
             <div>
               <div className="font-display text-lg font-extrabold">Modal Esquadrias</div>
               <div className="text-xs text-white/60">Esquadrias de alumínio · Vidros</div>
