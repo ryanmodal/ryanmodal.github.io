@@ -380,6 +380,25 @@ function QuoteCard({ compact = false }: { compact?: boolean }) {
   const [state, setState] = useState<"idle" | "sent">("idle");
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const name = String(fd.get("name") || "").trim();
+    const phone = String(fd.get("phone") || "").trim();
+    const email = String(fd.get("email") || "").trim();
+    const service = String(fd.get("service") || "").trim();
+    const details = String(fd.get("details") || "").trim();
+
+    const lines = [
+      "Olá! Gostaria de solicitar um orçamento.",
+      "",
+      name && `*Nome:* ${name}`,
+      phone && `*Telefone:* ${phone}`,
+      email && `*E-mail:* ${email}`,
+      service && `*Serviço:* ${service}`,
+      details && `*Detalhes:* ${details}`,
+    ].filter(Boolean);
+
+    const url = `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(lines.join("\n"))}`;
+    window.open(url, "_blank", "noopener,noreferrer");
     setState("sent");
   }
 
