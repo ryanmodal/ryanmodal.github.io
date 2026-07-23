@@ -16,10 +16,10 @@ import {
 } from "lucide-react";
 
 import heroAsset from "@/assets/modal-site.jpg.asset.json";
-import janelaImg from "@/assets/product-janela.jpg";
+import janelaImg from "@/assets/janela-modal.jpg.asset.json";
 import fotoModal5 from "@/assets/foto-modal-5.jpg.asset.json";
-import boxImg from "@/assets/product-box.jpg";
-import portaImg from "@/assets/product-porta.jpg";
+import boxImg from "@/assets/box-modal.jpg.asset.json";
+import portaImg from "@/assets/porta-modal.jpg.asset.json";
 import logoAsset from "@/assets/logo-modal-esquadrias.jpeg.asset.json";
 import fotoModal1 from "@/assets/foto-modal-1.jpg.asset.json";
 import fotoModal2 from "@/assets/foto-modal-2.jpg.asset.json";
@@ -235,17 +235,17 @@ function Services() {
     {
       title: "Janelas de alumínio",
       desc: "Maxim-ar, correr, camarão e basculantes. Linhas Suprema, Gold e Reforçada.",
-      img: janelaImg,
+      img: janelaImg.url,
     },
     {
       title: "Portas de alumínio",
       desc: "Portas de correr, pivotantes e sociais. Vidros temperados e laminados.",
-      img: portaImg,
+      img: portaImg.url,
     },
     {
       title: "Box para banheiro",
       desc: "Box de correr e articulado, vidro incolor, fumê ou temperado 8mm.",
-      img: boxImg,
+      img: boxImg.url,
     },
   ];
   return (
