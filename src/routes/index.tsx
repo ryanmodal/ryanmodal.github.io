@@ -25,6 +25,9 @@ import fotoModal1 from "@/assets/foto-modal-1.jpg.asset.json";
 import fotoModal2 from "@/assets/foto-modal-2.jpg.asset.json";
 import fotoModal3 from "@/assets/foto-modal-3.jpg.asset.json";
 import fotoModal4 from "@/assets/foto-modal-4.jpg.asset.json";
+import modalVideo1 from "@/assets/modal-video-1.mp4.asset.json";
+import modalVideo2 from "@/assets/modal-video-2.mp4.asset.json";
+import modalVideo3 from "@/assets/modal-video-3.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -544,6 +547,33 @@ function Gallery() {
             />
           </div>
         ))}
+      </div>
+
+      <div className="mt-16">
+        <div className="mb-8 text-center">
+          <span className="text-xs font-semibold uppercase tracking-wider text-brand">
+            Vídeos
+          </span>
+          <h3 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl">
+            Veja nossos projetos em movimento
+          </h3>
+        </div>
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-6 sm:overflow-visible">
+          {[modalVideo1, modalVideo2, modalVideo3].map((v, i) => (
+            <div
+              key={i}
+              className="relative w-[85%] shrink-0 snap-center overflow-hidden rounded-xl bg-black shadow-lg sm:w-auto"
+            >
+              <video
+                src={v.url}
+                controls
+                playsInline
+                preload="metadata"
+                className="aspect-[9/16] h-full w-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
