@@ -602,7 +602,7 @@ function Reviews() {
             O que dizem nossos clientes
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Avaliações reais do Google Meu Negócio, atualizadas automaticamente.
+            Avaliações reais do nossos clientes no Google, qualidade garantida!
           </p>
         </div>
         <div className="mt-10">
