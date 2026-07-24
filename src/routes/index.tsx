@@ -35,9 +35,9 @@ export const Route = createFileRoute("/")({
 
 const PHONE_DISPLAY = "(11) 93705-3816";
 const PHONE_TEL = "+5511937053816";
-const WHATSAPP = `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(
-  "Olá! Gostaria de um orçamento de esquadrias de alumínio.",
-)}`;
+const WHATSAPP_MESSAGE =
+  "Olá! 👋 Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?";
+const WHATSAPP = `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 const ADDRESS = "Av. Alfredo de Paula, 456 — Jardim Luíza, Franco da Rocha - SP, 07865-210";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=Modal+Esquadrias+Franco+da+Rocha";
