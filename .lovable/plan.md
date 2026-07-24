@@ -1,22 +1,18 @@
-## Plano: Substituir 4 imagens da galeria
+Atualizar as mensagens padrão enviadas pelo WhatsApp no site da Modal Esquadrias, conforme texto fornecido.
 
-As 4 imagens selecionadas correspondem aos slots `fotoModal1`, `fotoModal2`, `fotoModal3` e `fotoModal4` da galeria em `src/routes/index.tsx`. Vou substituí-las pelas 4 fotos anexadas.
+### Alterações previstas
 
-### Passos
-1. Fazer upload das 4 imagens anexadas para o CDN via `lovable-assets create`, gerando:
-   - `src/assets/modal-header.jpg.asset.json` (foto azul com janelas brancas)
-   - `src/assets/modal-header-2.jpg.asset.json` (casa branca com telhado e palmeiras)
-   - `src/assets/modal-header-3.jpg.asset.json` (casa cinza com guarda-corpo de alumínio)
-   - `src/assets/modal-header-4.jpg.asset.json` (casa moderna com portão preto)
-2. Em `src/routes/index.tsx`:
-   - Trocar os 4 imports `fotoModal1..4` pelos novos assets.
-   - Atualizar os `alt` de cada item da galeria para descrever as novas fotos.
-3. Rodar `bun run build` para validar.
+1. **Mensagem do botão de ação do WhatsApp**  
+   Atualizar a constante `WHATSAPP` em `src/routes/index.tsx` (linhas 38-40) para usar o novo texto:  
+   `Olá! 👋 Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?`  
+   Como os botões de WhatsApp em "Falar no WhatsApp", rodapé e CTA fixo mobile reutilizam essa constante, todos serão atualizados automaticamente.
 
-### Mapeamento
-- `fotoModal1` → `modal-header.jpg` (fachada azul com janelas de alumínio branco)
-- `fotoModal2` → `modal-header-2.jpg` (residência com portão e gradil de alumínio)
-- `fotoModal3` → `modal-header-3.jpg` (guarda-corpo e esquadrias em varanda)
-- `fotoModal4` → `modal-header-4.jpg` (portão de alumínio preto + guarda-corpo de vidro)
+2. **Mensagem gerada pelo formulário**  
+   Substituir a frase inicial `Olá! Gostaria de solicitar um orçamento.` dentro da função `onSubmit` do componente `QuoteCard` (linhas 393-401) pela mesma mensagem do usuário. Os dados preenchidos no formulário (nome, telefone, endereço, serviço e detalhes) continuam sendo anexados logo em seguida.
 
-Confirma que posso prosseguir?
+3. **Verificação**  
+   Rodar o build para garantir que não haja erros de sintaxe ou importação após as alterações.
+
+### Texto final que será aplicado
+
+`Olá! 👋 Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?`
