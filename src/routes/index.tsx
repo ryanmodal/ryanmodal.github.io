@@ -21,10 +21,10 @@ import fotoModal5 from "@/assets/foto-modal-5.jpg.asset.json";
 import boxImg from "@/assets/box-modal.jpg.asset.json";
 import portaImg from "@/assets/porta-modal.jpg.asset.json";
 import logoAsset from "@/assets/logo-modal-esquadrias.jpeg.asset.json";
-import fotoModal1 from "@/assets/foto-modal-1.jpg.asset.json";
-import fotoModal2 from "@/assets/foto-modal-2.jpg.asset.json";
-import fotoModal3 from "@/assets/foto-modal-3.jpg.asset.json";
-import fotoModal4 from "@/assets/foto-modal-4.jpg.asset.json";
+import fotoModal1 from "@/assets/modal-header.jpg.asset.json";
+import fotoModal2 from "@/assets/modal-header-2.jpg.asset.json";
+import fotoModal3 from "@/assets/modal-header-3.jpg.asset.json";
+import fotoModal4 from "@/assets/modal-header-4.jpg.asset.json";
 import modalVideo1 from "@/assets/modal-video-1.mp4.asset.json";
 import modalVideo2 from "@/assets/modal-video-2.mp4.asset.json";
 import modalVideo3 from "@/assets/modal-video-3.mp4.asset.json";
@@ -517,10 +517,10 @@ function Gallery() {
   const imgs = [
     { src: heroAsset.url, alt: "Esquadrias de alumínio pretas em área externa com piscina e acabamento moderno" },
     { src: fotoModal5.url, alt: "Fachada de casa com janelas de alumínio branco sob medida" },
-    { src: fotoModal1.url, alt: "Janela de alumínio branco com persianas integradas em bancada de granito" },
-    { src: fotoModal2.url, alt: "Portas de alumínio pretas de correr integradas à área de lazer com piscina" },
-    { src: fotoModal3.url, alt: "Cobertura de alumínio branco com policarbonato em área externa" },
-    { src: fotoModal4.url, alt: "Armário de cozinha com portas de alumínio marrom em ripado sob medida" },
+    { src: fotoModal1.url, alt: "Fachada azul com janelas de alumínio branco sob medida" },
+    { src: fotoModal2.url, alt: "Residência branca com gradil e portão de alumínio preto" },
+    { src: fotoModal3.url, alt: "Varanda com guarda-corpo e esquadrias de alumínio" },
+    { src: fotoModal4.url, alt: "Casa moderna com portão de alumínio preto e guarda-corpo de vidro" },
   ];
   return (
     <section id="galeria" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
