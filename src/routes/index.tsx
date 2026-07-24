@@ -693,7 +693,7 @@ function FAQ() {
                 +
               </span>
             </summary>
-            <p className="mt-3 text-sm text-muted-foreground">{f.a}</p>
+            <p className="mt-3 whitespace-pre-line text-sm text-muted-foreground">{f.a}</p>
           </details>
         ))}
       </div>
