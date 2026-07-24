@@ -25,6 +25,9 @@ import fotoModal1 from "@/assets/foto-modal-1.jpg.asset.json";
 import fotoModal2 from "@/assets/foto-modal-2.jpg.asset.json";
 import fotoModal3 from "@/assets/foto-modal-3.jpg.asset.json";
 import fotoModal4 from "@/assets/foto-modal-4.jpg.asset.json";
+import modalVideo1 from "@/assets/modal-video-1.mp4.asset.json";
+import modalVideo2 from "@/assets/modal-video-2.mp4.asset.json";
+import modalVideo3 from "@/assets/modal-video-3.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
