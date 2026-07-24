@@ -669,7 +669,7 @@ function FAQ() {
     },
     {
       q: "Quais regiões vocês atendem?",
-      a: "Franco da Rocha, Francisco Morato, Caieiras, Mairiporã e toda a região metropolitana de São Paulo.",
+      a: "Franco da Rocha, Francisco Morato, Caieiras, Mairiporã e toda a região metropolitana de São Paulo.\nPara demais regiões de São Paulo, entrar em contato conosco",
     },
     {
       q: "Existe garantia dos produtos?",
