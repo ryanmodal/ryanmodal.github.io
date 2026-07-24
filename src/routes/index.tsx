@@ -36,7 +36,7 @@ export const Route = createFileRoute("/")({
 const PHONE_DISPLAY = "(11) 93705-3816";
 const PHONE_TEL = "+5511937053816";
 const WHATSAPP_MESSAGE =
-  "Olá! 👋 Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?";
+  "Olá! 😊 Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?";
 const WHATSAPP = `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 const ADDRESS = "Av. Alfredo de Paula, 456 — Jardim Luíza, Franco da Rocha - SP, 07865-210";
 const MAPS_URL =
@@ -391,7 +391,7 @@ function QuoteCard({ compact = false }: { compact?: boolean }) {
     const details = String(fd.get("details") || "").trim();
 
     const lines = [
-      "Olá! 👋 Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?",
+      "Olá! 😊 Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?",
       "",
       name && `*Nome:* ${name}`,
       phone && `*Telefone:* ${phone}`,
