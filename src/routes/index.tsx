@@ -555,7 +555,7 @@ function Gallery() {
             Vídeos
           </span>
           <h3 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl">
-            Veja nossos projetos em movimento
+            Veja alguns de nossos melhores projetos !
           </h3>
         </div>
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-6 sm:overflow-visible">
