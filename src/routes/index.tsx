@@ -386,7 +386,7 @@ function QuoteCard({ compact = false }: { compact?: boolean }) {
     const fd = new FormData(e.currentTarget);
     const name = String(fd.get("name") || "").trim();
     const phone = String(fd.get("phone") || "").trim();
-    const email = String(fd.get("email") || "").trim();
+    const address = String(fd.get("address") || "").trim();
     const service = String(fd.get("service") || "").trim();
     const details = String(fd.get("details") || "").trim();
 
@@ -395,7 +395,7 @@ function QuoteCard({ compact = false }: { compact?: boolean }) {
       "",
       name && `*Nome:* ${name}`,
       phone && `*Telefone:* ${phone}`,
-      email && `*E-mail:* ${email}`,
+      address && `*Endereço:* ${address}`,
       service && `*Serviço:* ${service}`,
       details && `*Detalhes:* ${details}`,
     ].filter(Boolean);
@@ -441,7 +441,7 @@ function QuoteCard({ compact = false }: { compact?: boolean }) {
         <Field label="Nome" name="name" required placeholder="Seu nome completo" />
         <div className="grid gap-3 sm:grid-cols-2">
           <Field label="Telefone" name="phone" type="tel" required placeholder="(11) 90000-0000" />
-          <Field label="E-mail" name="email" type="email" placeholder="voce@email.com" />
+          <Field label="Endereço" name="address" placeholder="Rua, número, bairro, cidade" />
         </div>
         <div>
           <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
