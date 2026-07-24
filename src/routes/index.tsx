@@ -391,7 +391,7 @@ function QuoteCard({ compact = false }: { compact?: boolean }) {
     const details = String(fd.get("details") || "").trim();
 
     const lines = [
-      "Olá! Gostaria de solicitar um orçamento.",
+      "Olá! 👋 Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?",
       "",
       name && `*Nome:* ${name}`,
       phone && `*Telefone:* ${phone}`,
