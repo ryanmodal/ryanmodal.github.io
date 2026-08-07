@@ -13,6 +13,7 @@ import {
   MessageCircle,
   ArrowRight,
   Quote,
+  MoveHorizontal,
 } from "lucide-react";
 
 import heroAsset from "@/assets/modal-site.jpg.asset.json";
