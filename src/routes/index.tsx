@@ -118,6 +118,7 @@ function Header() {
           <a href="#servicos" className="hover:text-foreground">Serviços</a>
           <a href="#processo" className="hover:text-foreground">Como funciona</a>
           <a href="#galeria" className="hover:text-foreground">Galeria</a>
+          <a href="#antes-depois" className="hover:text-foreground">Antes e Depois</a>
           <a href="#avaliacoes" className="hover:text-foreground">Avaliações</a>
           <a href="#faq" className="hover:text-foreground">FAQ</a>
         </nav>
