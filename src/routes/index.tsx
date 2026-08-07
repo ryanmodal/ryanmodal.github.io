@@ -977,6 +977,7 @@ function Footer() {
             <li><a href="#servicos" className="hover:text-cta">Serviços</a></li>
             <li><a href="#processo" className="hover:text-cta">Como funciona</a></li>
             <li><a href="#galeria" className="hover:text-cta">Galeria</a></li>
+            <li><a href="#antes-depois" className="hover:text-cta">Antes e Depois</a></li>
             <li><a href="#avaliacoes" className="hover:text-cta">Avaliações</a></li>
             <li><a href="#orcamento" className="hover:text-cta">Orçamento</a></li>
           </ul>
