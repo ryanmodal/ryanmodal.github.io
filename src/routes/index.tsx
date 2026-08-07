@@ -55,6 +55,7 @@ function Home() {
         <Process />
         <QuoteSection />
         <Gallery />
+        <BeforeAfterSection />
         <Reviews />
         <InstagramFeed />
         <FAQ />
