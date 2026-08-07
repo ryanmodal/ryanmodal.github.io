@@ -1,40 +1,51 @@
-# Plano: Melhorar visual da seção "Antes e Depois"
+# Plano: Melhorar visual da seção "Antes e Depois" com rótulos dinâmicos
 
 ## Objetivo
-Deixar a seção "Antes e Depois" mais elegante e profissional, garantindo que os rótulos "Antes" e "Depois" permaneçam sempre visíveis — independentemente da posição do slider.
+Deixar a seção "Antes e Depois" mais elegante e profissional, com rótulos que aparecem de acordo com o movimento do slider: quando o usuário arrasta para a esquerda, aparece apenas "Antes"; quando arrasta para a direita, aparece apenas "Depois".
 
 ## O que será alterado
 
-1. **Rótulos fixos e elegantes**
-   - Manter os textos "Antes" e "Depois" sempre visíveis em ambos os lados do slider.
-   - Posicionar os rótulos fora da área de recorte (`clip-path`) para que nunca sumam ao arrastar.
-   - Aplicar estilo com fundo semitransparente, bordas arredondadas e tipografia consistente com o resto do site (tokens `--primary`, `--cta`, `--foreground`).
+1. **Comportamento dos rótulos**
+   - Remover a exibição simultânea dos textos "Antes" e "Depois".
+   - Mostrar **"Antes"** quando o slider estiver posicionado à esquerda (por exemplo, abaixo de 50%).
+   - Mostrar **"Depois"** quando o slider estiver posicionado à direita (por exemplo, acima de 50%).
+   - Aplicar transição suave de opacidade para não piscar abruptamente ao arrastar.
 
-2. **Slider handle redesenhado**
-   - Trocar o ícone simples por um controle mais visível: círculo com borda branca, fundo azul (`--cta`) e sombra suave.
+2. **Posicionamento inteligente dos rótulos**
+   - "Antes" deve aparecer do lado esquerdo da imagem, dentro da área revelada do "antes".
+   - "Depois" deve aparecer do lado direito da imagem, dentro da área revelada do "depois".
+   - Garantir que o rótulo ativo nunca fique cortado pelo divisor central.
+
+3. **Slider handle redesenhado**
+   - Manter o círculo com borda branca, fundo azul (`--cta`) e sombra suave.
    - Adicionar feedback visual no hover/active (leve aumento de escala).
    - Garantir que a linha divisória central tenha boa visibilidade sem roubar a atenção das fotos.
 
-3. **Cartões de comparação mais limpos**
+4. **Cartões de comparação mais limpos**
    - Manter bordas arredondadas e sombra suave existente.
    - Ajustar espaçamentos para que o título e o slider fiquem harmoniosos.
-   - Opcional: adicionar uma legenda sutil embaixo de cada imagem (ex: "Antes" e "Depois") caso os rótulos superiores não fiquem claros o suficiente.
 
-4. **Responsividade e acessibilidade**
+5. **Responsividade e acessibilidade**
    - Garantir que os rótulos não fiquem cortados em telas pequenas.
    - Manter a usabilidade por toque (touch) e mouse.
    - Preservar atributos ARIA (`role="slider"`, `aria-valuenow`, etc.).
 
 ## Etapas de implementação
 
-1. **Capturar o estado atual** — já lido; o componente `BeforeAfterSlider` está em `src/routes/index.tsx` (linhas ~634-746).
-2. **Ajustar o componente `BeforeAfterSlider`** — reposicionar rótulos para fora da área recortada, estilizar com tokens do design system, melhorar o handle.
-3. **Ajustar o `BeforeAfterSection`** — revisar espaçamentos e títulos dos cartões, se necessário.
-4. **Verificar build** — rodar `bun run build` para garantir que não haja erros de tipo ou estilo.
-5. **Verificar visual** — abrir preview para confirmar que "Antes" e "Depois" permanecem visíveis em qualquer posição do slider.
+1. **Ajustar o componente `BeforeAfterSlider`** em `src/routes/index.tsx`:
+   - Adicionar estado lógico para decidir qual rótulo exibir com base em `position`.
+   - Posicionar "Antes" e "Depois" dentro das respectivas metades reveladas.
+   - Aplicar transição de opacidade para troca suave entre os rótulos.
+   - Opcional: manter ambos os rótulos sutilmente visíveis com opacidade reduzida em vez de sumir totalmente, caso o usuário prefira — mas a regra padrão será um rótulo principal por vez.
+
+2. **Ajustar o `BeforeAfterSection`** — revisar espaçamentos e títulos dos cartões, se necessário.
+
+3. **Verificar build** — rodar `bun run build` para garantir que não haja erros de tipo ou estilo.
+
+4. **Verificar visual** — abrir preview para confirmar que o rótulo correto aparece ao arrastar o slider para cada lado.
 
 ## Decisões técnicas
 
 - Nenhuma biblioteca externa será adicionada; ajustes serão feitos com Tailwind CSS e estilos inline para a posição dinâmica do slider.
-- Os rótulos serão renderizados fora do `clip-path` para garantir visibilidade permanente.
+- A lógica de exibição será baseada na porcentagem atual do slider (`position`).
 - Tokens de cor do design system serão usados (`bg-primary`, `text-primary-foreground`, `bg-cta`, `text-cta-foreground`) para manter consistência com o tema atual.
