@@ -14,6 +14,8 @@ import {
   ArrowRight,
   Quote,
   MoveHorizontal,
+  Instagram,
+
 } from "lucide-react";
 
 import heroAsset from "@/assets/modal-site.jpg.asset.json";
@@ -796,17 +798,35 @@ function InstagramFeed() {
         center
       />
       <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_360px]">
-        <div className="overflow-hidden rounded-2xl border border-border bg-card">
-          <iframe
-            src={`https://www.instagram.com/${handle}/embed`}
-            title={`Instagram @${handle}`}
-            className="h-[720px] w-full"
-            loading="lazy"
-            frameBorder={0}
-            scrolling="no"
-            allow="encrypted-media"
-          />
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {[
+            { src: fotoModal1.url, alt: "Fachada com janelas de alumínio branco sob medida" },
+            { src: janelaImg.url, alt: "Janela de alumínio instalada pela Modal Esquadrias" },
+            { src: portaImg.url, alt: "Porta de alumínio moderna sob medida" },
+            { src: boxImg.url, alt: "Box de banheiro em vidro temperado" },
+            { src: fotoModal3.url, alt: "Estrutura de alumínio com cobertura em policarbonato" },
+            { src: fotoModal2.url, alt: "Portas de correr em alumínio preto" },
+          ].map((img) => (
+            <a
+              key={img.src}
+              href={profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative aspect-square overflow-hidden rounded-xl border border-border bg-card"
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+              <span className="absolute inset-0 flex items-center justify-center bg-foreground/50 opacity-0 transition group-hover:opacity-100">
+                <Instagram className="h-7 w-7 text-background" />
+              </span>
+            </a>
+          ))}
         </div>
+
         <aside className="flex flex-col justify-center gap-4 rounded-2xl border border-border bg-surface p-8">
           <div className="text-sm font-semibold uppercase tracking-wider text-cta">@{handle}</div>
           <h3 className="text-2xl font-bold text-foreground">Siga a Modal Esquadrias</h3>
