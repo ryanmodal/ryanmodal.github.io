@@ -14,6 +14,8 @@ import {
   ArrowRight,
   Quote,
   MoveHorizontal,
+  Instagram,
+
 } from "lucide-react";
 
 import heroAsset from "@/assets/modal-site.jpg.asset.json";
