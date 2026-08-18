@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect, useRef, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import {
   Phone,
   MapPin,
@@ -13,9 +13,6 @@ import {
   MessageCircle,
   ArrowRight,
   Quote,
-  MoveHorizontal,
-  Instagram,
-
 } from "lucide-react";
 
 import heroAsset from "@/assets/modal-site.jpg.asset.json";
@@ -57,7 +54,6 @@ function Home() {
         <Process />
         <QuoteSection />
         <Gallery />
-        <BeforeAfterSection />
         <Reviews />
         <InstagramFeed />
         <FAQ />
@@ -120,7 +116,6 @@ function Header() {
           <a href="#servicos" className="hover:text-foreground">Serviços</a>
           <a href="#processo" className="hover:text-foreground">Como funciona</a>
           <a href="#galeria" className="hover:text-foreground">Galeria</a>
-          <a href="#antes-depois" className="hover:text-foreground">Antes e Depois</a>
           <a href="#avaliacoes" className="hover:text-foreground">Avaliações</a>
           <a href="#faq" className="hover:text-foreground">FAQ</a>
         </nav>
@@ -584,170 +579,6 @@ function Gallery() {
   );
 }
 
-/* ---------------- Before & After ---------------- */
-function BeforeAfterSection() {
-  const comparisons = [
-    {
-      before: { src: fotoModal3.url, alt: "Antes - varanda sem esquadria" },
-      after: { src: fotoModal2.url, alt: "Depois - varanda com guarda-corpo de alumínio" },
-      title: "Varanda protegida",
-    },
-    {
-      before: { src: fotoModal1.url, alt: "Antes - fachada sem janelas" },
-      after: { src: fotoModal4.url, alt: "Depois - fachada com esquadrias instaladas" },
-      title: "Fachada renovada",
-    },
-    {
-      before: { src: heroAsset.url, alt: "Antes - área externa sem acabamento" },
-      after: { src: fotoModal5.url, alt: "Depois - área externa com esquadrias de alumínio" },
-      title: "Área externa modernizada",
-    },
-  ];
-
-  return (
-    <section id="antes-depois" className="bg-surface">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <SectionHeader
-          eyebrow="Transformação real"
-          title="Antes e depois de projetos entregues"
-          desc="Arraste a seta no meio da imagem para ver a diferença entre o antes e o depois dos nossos trabalhos."
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {comparisons.map((c, i) => (
-            <article
-              key={i}
-              className="rounded-2xl border border-border bg-card p-4 shadow-sm"
-            >
-              <h3 className="mb-3 font-display text-lg font-bold text-foreground">{c.title}</h3>
-              <BeforeAfterSlider
-                beforeImage={c.before.src}
-                afterImage={c.after.src}
-                beforeAlt={c.before.alt}
-                afterAlt={c.after.alt}
-              />
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function BeforeAfterSlider({
-  beforeImage,
-  afterImage,
-  beforeAlt,
-  afterAlt,
-}: {
-  beforeImage: string;
-  afterImage: string;
-  beforeAlt: string;
-  afterAlt: string;
-}) {
-  const [position, setPosition] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleMove = (clientX: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-    const rect = container.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    const pct = (x / rect.width) * 100;
-    setPosition(Number(pct.toFixed(2)));
-  };
-
-  useEffect(() => {
-    function onMouseMove(e: MouseEvent) {
-      if (!isDragging) return;
-      e.preventDefault();
-      handleMove(e.clientX);
-    }
-    function onTouchMove(e: TouchEvent) {
-      if (!isDragging) return;
-      handleMove(e.touches[0].clientX);
-    }
-    function onEnd() {
-      setIsDragging(false);
-    }
-
-    if (isDragging) {
-      window.addEventListener("mousemove", onMouseMove);
-      window.addEventListener("mouseup", onEnd);
-      window.addEventListener("touchmove", onTouchMove, { passive: false });
-      window.addEventListener("touchend", onEnd);
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onEnd);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onEnd);
-    };
-  }, [isDragging]);
-
-  return (
-    <div
-      ref={containerRef}
-      className="group relative aspect-[4/3] w-full cursor-ew-resize overflow-hidden rounded-xl bg-muted select-none"
-      onMouseDown={(e) => {
-        setIsDragging(true);
-        handleMove(e.clientX);
-      }}
-      onTouchStart={(e) => {
-        setIsDragging(true);
-        handleMove(e.touches[0].clientX);
-      }}
-      role="slider"
-      aria-label="Comparar antes e depois"
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-valuenow={Math.round(position)}
-      tabIndex={0}
-    >
-      {/* After image - full background */}
-      <img
-        src={afterImage}
-        alt={afterAlt}
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-        draggable={false}
-      />
-      {/* Before image - clipped overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-        style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-      >
-        <img
-          src={beforeImage}
-          alt={beforeAlt}
-          className="absolute inset-0 h-full w-full object-cover"
-          draggable={false}
-        />
-      </div>
-
-      {/* Labels */}
-      <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">
-        Antes
-      </span>
-      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-cta/90 px-2.5 py-1 text-xs font-semibold text-cta-foreground backdrop-blur-sm">
-        Depois
-      </span>
-
-      {/* Divider line & handle */}
-      <div
-        className="absolute inset-y-0 w-0.5 bg-white/90 shadow-[0_0_10px_rgba(0,0,0,0.3)]"
-        style={{ left: `${position}%` }}
-      />
-      <div
-        className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-cta p-2.5 text-cta-foreground shadow-lg transition-transform group-active:scale-110"
-        style={{ left: `${position}%` }}
-      >
-        <MoveHorizontal className="h-5 w-5" />
-      </div>
-    </div>
-  );
-}
-
 /* ---------------- Reviews (ElfSight Google Reviews) ---------------- */
 function Reviews() {
   useEffect(() => {
@@ -798,35 +629,17 @@ function InstagramFeed() {
         center
       />
       <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_360px]">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {[
-            { src: fotoModal1.url, alt: "Fachada com janelas de alumínio branco sob medida" },
-            { src: janelaImg.url, alt: "Janela de alumínio instalada pela Modal Esquadrias" },
-            { src: portaImg.url, alt: "Porta de alumínio moderna sob medida" },
-            { src: boxImg.url, alt: "Box de banheiro em vidro temperado" },
-            { src: fotoModal3.url, alt: "Estrutura de alumínio com cobertura em policarbonato" },
-            { src: fotoModal2.url, alt: "Portas de correr em alumínio preto" },
-          ].map((img) => (
-            <a
-              key={img.src}
-              href={profileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative aspect-square overflow-hidden rounded-xl border border-border bg-card"
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                loading="lazy"
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-              />
-              <span className="absolute inset-0 flex items-center justify-center bg-foreground/50 opacity-0 transition group-hover:opacity-100">
-                <Instagram className="h-7 w-7 text-background" />
-              </span>
-            </a>
-          ))}
+        <div className="overflow-hidden rounded-2xl border border-border bg-card">
+          <iframe
+            src={`https://www.instagram.com/${handle}/embed`}
+            title={`Instagram @${handle}`}
+            className="h-[720px] w-full"
+            loading="lazy"
+            frameBorder={0}
+            scrolling="no"
+            allow="encrypted-media"
+          />
         </div>
-
         <aside className="flex flex-col justify-center gap-4 rounded-2xl border border-border bg-surface p-8">
           <div className="text-sm font-semibold uppercase tracking-wider text-cta">@{handle}</div>
           <h3 className="text-2xl font-bold text-foreground">Siga a Modal Esquadrias</h3>
@@ -997,7 +810,6 @@ function Footer() {
             <li><a href="#servicos" className="hover:text-cta">Serviços</a></li>
             <li><a href="#processo" className="hover:text-cta">Como funciona</a></li>
             <li><a href="#galeria" className="hover:text-cta">Galeria</a></li>
-            <li><a href="#antes-depois" className="hover:text-cta">Antes e Depois</a></li>
             <li><a href="#avaliacoes" className="hover:text-cta">Avaliações</a></li>
             <li><a href="#orcamento" className="hover:text-cta">Orçamento</a></li>
           </ul>
