@@ -108,7 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         src: "https://widget.etalker.app/webchat/widget.js",
         async: true,
-        "data-widget-id": "3ef2a624d0e38acc",
+        "data-widget-id": "a0ebdc24595b84d2",
       },
       {
         type: "application/ld+json",
