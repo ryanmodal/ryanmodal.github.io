@@ -129,7 +129,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           aggregateRating: {
             "@type": "AggregateRating",
             ratingValue: "5.0",
-            reviewCount: "72",
+            reviewCount: "74",
           },
           openingHours: "Mo-Sa 08:00-18:30",
           priceRange: "$$",

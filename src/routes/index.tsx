@@ -81,7 +81,7 @@ function TopBar() {
         </div>
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-1.5">
-            <Star className="h-3.5 w-3.5 fill-cta text-cta" /> 5,0 · 72 avaliações no Google
+            <Star className="h-3.5 w-3.5 fill-cta text-cta" /> 5,0 · 74 avaliações no Google
           </span>
         </div>
       </div>
@@ -161,7 +161,7 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-12 md:py-24 lg:py-28">
         <div className="md:col-span-7 lg:col-span-7">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white ring-1 ring-white/20 backdrop-blur">
-            <Star className="h-3.5 w-3.5 fill-cta text-cta" /> Nota 5,0 · 72 avaliações no Google
+            <Star className="h-3.5 w-3.5 fill-cta text-cta" /> Nota 5,0 · 74 avaliações no Google
           </span>
           <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
             Esquadrias de alumínio sob medida em{" "}
