@@ -55,9 +55,9 @@ const CITY = "Jardim Tarumã, Jundiaí - SP";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=Rua+Rio+de+Janeiro+624+Jardim+Taruma+Jundia%C3%AD+SP";
 const HOURS = [
-  { day: "Segunda a sexta", time: "8h às 18h" },
-  { day: "Sábado", time: "8h às 12h" },
-  { day: "Domingo e feriados", time: "Fechado" },
+  { day: "Segunda a quinta", time: "9h às 11h30\n13h30 às 17h" },
+  { day: "Sexta", time: "9h às 11h30\n13h30 às 16h" },
+  { day: "Sábado e domingo", time: "Fechado" },
 ];
 
 function whatsappLink(
@@ -843,14 +843,14 @@ function Location() {
                       className="mt-2 flex justify-between gap-4 border-b border-white/5 pb-2 last:border-0"
                     >
                       <dt className="text-white/75">{h.day}</dt>
-                      <dd className="font-semibold">{h.time}</dd>
+                      <dd className="whitespace-pre text-right font-semibold">{h.time}</dd>
                     </div>
                   ))}
                 </dl>
               </div>
               <div className="mt-6 rounded-md border border-[#ffc61a]/30 bg-[#ffc61a]/10 p-4 text-sm leading-relaxed text-[#ffd966]">
-                <strong>Horários a confirmar.</strong> Os horários e valores exibidos são
-                placeholders e serão substituídos pelas informações reais da Scorpions Artes.
+                <strong>Valores ilustrativos.</strong> Preços e pacotes exibidos são exemplos e
+                serão substituídos pelos valores reais da Scorpions Artes.
               </div>
               <a
                 href={MAPS_URL}
@@ -963,8 +963,8 @@ function Footer() {
           </nav>
         </div>
         <p className="mt-8 text-xs leading-relaxed text-white/40">
-          © {new Date().getFullYear()} Scorpions Artes · {CITY} · WhatsApp {PHONE_DISPLAY}. Horários
-          e valores exibidos são fictícios e serão confirmados.
+          © {new Date().getFullYear()} Scorpions Artes · {CITY} · WhatsApp {PHONE_DISPLAY}. Preços e
+          pacotes exibidos são ilustrativos e serão confirmados.
         </p>
       </div>
     </footer>
