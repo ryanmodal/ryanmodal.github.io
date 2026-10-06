@@ -665,7 +665,6 @@ function Highlights() {
       id="destaques"
       className="relative overflow-hidden border-y border-white/10 bg-surface py-20 sm:py-28"
     >
-      <div className="bg-grid pointer-events-none absolute inset-0 opacity-60" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
           <SectionTitle
