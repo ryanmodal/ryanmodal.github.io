@@ -454,7 +454,6 @@ function Header() {
 function Hero() {
   return (
     <section id="topo" className="relative isolate overflow-hidden pt-24 sm:pt-28">
-      <div className="bg-grid pointer-events-none absolute inset-0 -z-10" />
       <Parallax
         speed={0.18}
         className="pointer-events-none absolute -right-52 top-0 -z-10 w-[480px] opacity-20 sm:-right-24 sm:top-10 sm:w-[600px] sm:opacity-60"
