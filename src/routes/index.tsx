@@ -384,6 +384,14 @@ function Header() {
           : "bg-transparent"
       }`}
     >
+      <div className="flex h-8 items-center justify-center gap-2 border-b border-white/10 bg-[#0b1430] px-3 text-center text-[11px] text-white/80 sm:text-xs">
+        <span className="rounded bg-[#ffc61a] px-1.5 py-0.5 font-[family-name:var(--font-tech)] text-[8px] font-bold uppercase tracking-widest text-black sm:text-[9px]">
+          Demonstração
+        </span>
+        <span>
+          Site criado por <strong className="font-semibold text-white">Ryan Pereira</strong>
+        </span>
+      </div>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
         <a href="#topo" className="flex items-center gap-3" aria-label="Scorpions Artes — início">
           <img
@@ -453,7 +461,7 @@ function Header() {
 /* ---------------- hero ---------------- */
 function Hero() {
   return (
-    <section id="topo" className="relative isolate overflow-hidden pt-24 sm:pt-28">
+    <section id="topo" className="relative isolate overflow-hidden pt-32 sm:pt-36">
       <Parallax
         speed={0.18}
         className="pointer-events-none absolute -right-52 top-0 -z-10 w-[480px] opacity-20 sm:-right-24 sm:top-10 sm:w-[600px] sm:opacity-60"
@@ -576,7 +584,7 @@ function Services() {
 
         <nav
           aria-label="Categorias"
-          className="sticky top-16 z-30 -mx-4 mt-8 flex gap-2 overflow-x-auto bg-background/80 px-4 py-3 backdrop-blur-xl [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0"
+          className="sticky top-24 z-30 -mx-4 mt-8 flex gap-2 overflow-x-auto bg-background/80 px-4 py-3 backdrop-blur-xl [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0"
         >
           {CATEGORIES.map((c) => (
             <a
@@ -963,6 +971,10 @@ function Footer() {
         <p className="mt-8 text-xs leading-relaxed text-white/40">
           © {new Date().getFullYear()} Scorpions Artes · {CITY} · WhatsApp {PHONE_DISPLAY}. Preços e
           pacotes exibidos são ilustrativos e serão confirmados.
+        </p>
+        <p className="mt-3 text-xs leading-relaxed text-white/50">
+          Este é um site de demonstração desenvolvido por{" "}
+          <strong className="text-white/80">Ryan Pereira</strong>.
         </p>
       </div>
     </footer>
