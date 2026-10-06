@@ -50,9 +50,10 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_NUMBER = "5511995505140";
 const PHONE_DISPLAY = "(11) 99550-5140";
 const INSTAGRAM_HANDLE = "scorpionsartesjundiai";
-const ADDRESS = "Av. Exemplo, 000 - Centro";
-const CITY = "Jundiaí - SP";
-const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=Jundia%C3%AD+SP";
+const ADDRESS = "Rua Rio de Janeiro, 624";
+const CITY = "Jardim Tarumã, Jundiaí - SP";
+const MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Rua+Rio+de+Janeiro+624+Jardim+Taruma+Jundia%C3%AD+SP";
 const HOURS = [
   { day: "Segunda a sexta", time: "8h às 18h" },
   { day: "Sábado", time: "8h às 12h" },
@@ -848,8 +849,8 @@ function Location() {
                 </dl>
               </div>
               <div className="mt-6 rounded-md border border-[#ffc61a]/30 bg-[#ffc61a]/10 p-4 text-sm leading-relaxed text-[#ffd966]">
-                <strong>Dados fictícios a confirmar.</strong> Endereço e horários são placeholders e
-                serão substituídos pelas informações reais da Scorpions Artes.
+                <strong>Horários a confirmar.</strong> Os horários e valores exibidos são
+                placeholders e serão substituídos pelas informações reais da Scorpions Artes.
               </div>
               <a
                 href={MAPS_URL}
@@ -857,7 +858,7 @@ function Location() {
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand hover:underline"
               >
-                Ver Jundiaí no mapa <ArrowRight className="h-4 w-4" />
+                Ver no mapa <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </Reveal>
@@ -962,8 +963,8 @@ function Footer() {
           </nav>
         </div>
         <p className="mt-8 text-xs leading-relaxed text-white/40">
-          © {new Date().getFullYear()} Scorpions Artes · {CITY} · WhatsApp {PHONE_DISPLAY}.
-          Endereço, horários e valores exibidos são fictícios e serão confirmados.
+          © {new Date().getFullYear()} Scorpions Artes · {CITY} · WhatsApp {PHONE_DISPLAY}. Horários
+          e valores exibidos são fictícios e serão confirmados.
         </p>
       </div>
     </footer>
