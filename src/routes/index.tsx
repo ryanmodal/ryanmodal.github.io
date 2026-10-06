@@ -47,8 +47,8 @@ export const Route = createFileRoute("/")({
 /* ------------------------------------------------------------------ */
 /* Dados da empresa — PLACEHOLDERS a confirmar com o cliente           */
 /* ------------------------------------------------------------------ */
-const WHATSAPP_NUMBER = "5511900000000"; // TODO: trocar pelo número real (DDI+DDD+número)
-const PHONE_DISPLAY = "(11) 90000-0000";
+const WHATSAPP_NUMBER = "5511995505140";
+const PHONE_DISPLAY = "(11) 99550-5140";
 const INSTAGRAM_HANDLE = "scorpionsartesjundiai";
 const ADDRESS = "Av. Exemplo, 000 - Centro";
 const CITY = "Jundiaí - SP";
@@ -848,8 +848,8 @@ function Location() {
                 </dl>
               </div>
               <div className="mt-6 rounded-md border border-[#ffc61a]/30 bg-[#ffc61a]/10 p-4 text-sm leading-relaxed text-[#ffd966]">
-                <strong>Dados fictícios a confirmar.</strong> Endereço, horários e telefone são
-                placeholders e serão substituídos pelas informações reais da Scorpions Artes.
+                <strong>Dados fictícios a confirmar.</strong> Endereço e horários são placeholders e
+                serão substituídos pelas informações reais da Scorpions Artes.
               </div>
               <a
                 href={MAPS_URL}
@@ -962,8 +962,8 @@ function Footer() {
           </nav>
         </div>
         <p className="mt-8 text-xs leading-relaxed text-white/40">
-          © {new Date().getFullYear()} Scorpions Artes · {CITY}. Telefone ({PHONE_DISPLAY}),
-          endereço, horários e valores exibidos são fictícios e serão confirmados.
+          © {new Date().getFullYear()} Scorpions Artes · {CITY} · WhatsApp {PHONE_DISPLAY}.
+          Endereço, horários e valores exibidos são fictícios e serão confirmados.
         </p>
       </div>
     </footer>
