@@ -11,7 +11,6 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import logoAsset from "../assets/logo-modal-esquadrias.jpeg.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -73,9 +72,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const siteTitle = "Modal Esquadrias — Esquadrias de Alumínio em Franco da Rocha e Região";
+const siteTitle = "Scorpions Artes — Comunicação Visual e Personalizados em Jundiaí";
 const siteDesc =
-  "Fornecedor de esquadrias de alumínio em Franco da Rocha - SP. Janelas, portas, box e fachadas sob medida. 5,0 estrelas no Google. Orçamento rápido: (11) 93705-3816.";
+  "Fachadas em ACM, letras caixa, envelopamento, adesivos, personalizados e identidade visual em Jundiaí - SP. Peça seu orçamento pelo WhatsApp.";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -84,55 +83,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: siteTitle },
       { name: "description", content: siteDesc },
-      { name: "author", content: "Modal Esquadrias" },
-      { name: "theme-color", content: "#1a2749" },
+      { name: "author", content: "Scorpions Artes" },
+      { name: "theme-color", content: "#05060a" },
       { property: "og:title", content: siteTitle },
       { property: "og:description", content: siteDesc },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Modal Esquadrias" },
+      { property: "og:site_name", content: "Scorpions Artes" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: siteTitle },
       { name: "twitter:description", content: siteDesc },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: logoAsset.url, type: "image/jpeg" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Michroma&display=swap",
       },
     ],
     scripts: [
-      {
-        src: "https://widget.etalker.app/webchat/widget.js",
-        async: true,
-        "data-widget-id": "a0ebdc24595b84d2",
-      },
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          name: "Modal Esquadrias",
-          image: "https://modalesquadrias.com.br/og.jpg",
-          telephone: "+55-11-93705-3816",
+          name: "Scorpions Artes",
+          description: siteDesc,
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Av. Alfredo de Paula, 456 - Jardim Luíza",
-            addressLocality: "Franco da Rocha",
+            addressLocality: "Jundiaí",
             addressRegion: "SP",
-            postalCode: "07865-210",
             addressCountry: "BR",
           },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "5.0",
-            reviewCount: "74",
-          },
-          openingHours: "Mo-Sa 08:00-18:30",
-          priceRange: "$$",
+          sameAs: ["https://instagram.com/scorpionsartesjundiai"],
         }),
       },
     ],
