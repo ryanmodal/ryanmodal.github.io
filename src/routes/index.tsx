@@ -29,6 +29,8 @@ import {
 } from "lucide-react";
 
 import logo from "@/assets/logo-scorpions.png";
+import ryanLogo from "@/assets/logo-ryan.jpg";
+import ryanMark from "@/assets/logo-ryan-mark.png";
 import { Parallax, Reveal } from "@/components/scorpions/motion";
 import {
   BrandScene,
@@ -391,6 +393,7 @@ function Header() {
         <span>
           Site criado por <strong className="font-semibold text-white">Ryan Pereira</strong>
         </span>
+        <img src={ryanMark} alt="Logo Ryan Pereira" height={20} className="h-5 w-auto" />
       </div>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
         <a href="#topo" className="flex items-center gap-3" aria-label="Scorpions Artes — início">
@@ -972,10 +975,19 @@ function Footer() {
           © {new Date().getFullYear()} Scorpions Artes · {CITY} · WhatsApp {PHONE_DISPLAY}. Preços e
           pacotes exibidos são ilustrativos e serão confirmados.
         </p>
-        <p className="mt-3 text-xs leading-relaxed text-white/50">
-          Este é um site de demonstração desenvolvido por{" "}
-          <strong className="text-white/80">Ryan Pereira</strong>.
-        </p>
+        <div className="mt-5 flex items-center gap-3 text-xs leading-relaxed text-white/50">
+          <img
+            src={ryanLogo}
+            alt="Ryan Pereira — Criação de Sites"
+            width={56}
+            height={56}
+            className="h-14 w-14 rounded-lg ring-1 ring-white/10"
+          />
+          <p>
+            Este é um site de demonstração desenvolvido por{" "}
+            <strong className="text-white/80">Ryan Pereira</strong>, criação de sites.
+          </p>
+        </div>
       </div>
     </footer>
   );
