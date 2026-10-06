@@ -1,577 +1,611 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect, type FormEvent } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
-  Phone,
-  MapPin,
-  Clock,
-  Star,
-  CheckCircle2,
-  ShieldCheck,
-  Hammer,
-  Truck,
-  Ruler,
-  MessageCircle,
   ArrowRight,
-  Quote,
+  Building2,
+  Clock,
+  Coffee,
+  FileText,
+  Gift,
+  Lightbulb,
+  MapPin,
+  Megaphone,
+  Menu,
+  Palette,
+  PenTool,
+  Rocket,
+  Ruler,
+  ScanLine,
+  Shirt,
+  Sparkles,
+  Store,
+  Truck,
+  X,
+  Zap,
+  Car,
+  Layers,
+  Signpost,
+  type LucideIcon,
 } from "lucide-react";
 
-import heroAsset from "@/assets/modal-site.jpg.asset.json";
-import janelaImg from "@/assets/janela-modal.jpg.asset.json";
-import fotoModal5 from "@/assets/foto-modal-5.jpg.asset.json";
-import boxImg from "@/assets/box-modal.jpg.asset.json";
-import portaImg from "@/assets/porta-modal.jpg.asset.json";
-import logoAsset from "@/assets/logo-modal-esquadrias.jpeg.asset.json";
-import fotoModal1 from "@/assets/modal-header.jpg.asset.json";
-import fotoModal2 from "@/assets/modal-header-2.jpg.asset.json";
-import fotoModal3 from "@/assets/modal-header-3.jpg.asset.json";
-import fotoModal4 from "@/assets/modal-header-4.jpg.asset.json";
-import modalVideo1 from "@/assets/modal-video-1.mp4.asset.json";
-import modalVideo2 from "@/assets/modal-video-2.mp4.asset.json";
-import modalVideo3 from "@/assets/modal-video-3.mp4.asset.json";
+import logo from "@/assets/logo-scorpions.png";
+import ryanLogo from "@/assets/logo-ryan.jpg";
+import ryanMark from "@/assets/logo-ryan-mark.png";
+import { Parallax, Reveal } from "@/components/scorpions/motion";
+import {
+  BrandScene,
+  CustomScene,
+  PaintAccent,
+  PaintBurst,
+  SignageScene,
+  StorefrontScene,
+  VehicleScene,
+} from "@/components/scorpions/scenes";
 
 export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const PHONE_DISPLAY = "(11) 93705-3816";
-const PHONE_TEL = "+5511937053816";
-const WHATSAPP_MESSAGE =
-  "Olá! Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?";
-const WHATSAPP = `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-const ADDRESS = "Av. Alfredo de Paula, 456 — Jardim Luíza, Franco da Rocha - SP, 07865-210";
+/* ------------------------------------------------------------------ */
+/* Dados da empresa — PLACEHOLDERS a confirmar com o cliente           */
+/* ------------------------------------------------------------------ */
+const WHATSAPP_NUMBER = "5511995505140";
+const PHONE_DISPLAY = "(11) 99550-5140";
+const INSTAGRAM_HANDLE = "scorpionsartesjundiai";
+const ADDRESS = "Rua Rio de Janeiro, 624";
+const CITY = "Jardim Tarumã, Jundiaí - SP";
 const MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=Modal+Esquadrias+Franco+da+Rocha";
+  "https://www.google.com/maps/search/?api=1&query=Rua+Rio+de+Janeiro+624+Jardim+Taruma+Jundia%C3%AD+SP";
+const HOURS = [
+  { day: "Segunda a quinta", time: "9h às 11h30\n13h30 às 17h" },
+  { day: "Sexta", time: "9h às 11h30\n13h30 às 16h" },
+  { day: "Sábado e domingo", time: "Fechado" },
+];
+
+function whatsappLink(
+  message = "Olá, Scorpions Artes! Vim pelo site e gostaria de pedir um orçamento.",
+) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12.04 2a9.93 9.93 0 0 0-8.5 15.06L2 22l5.1-1.5A9.95 9.95 0 1 0 12.04 2Zm0 18.2a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.02.89.9-2.94-.2-.31a8.2 8.2 0 1 1 6.8 3.68Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.78.97-.15.16-.29.18-.54.06a6.7 6.7 0 0 1-3.3-2.88c-.25-.43.25-.4.72-1.34.08-.16.04-.3-.02-.42-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.41-.56-.42h-.47c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.55c.12.16 1.73 2.64 4.2 3.7 1.56.67 2.17.73 2.95.62.48-.07 1.46-.6 1.67-1.17.2-.58.2-1.07.14-1.17-.06-.1-.23-.16-.48-.28Z" />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Conteúdo                                                            */
+/* ------------------------------------------------------------------ */
+type Category = {
+  id: string;
+  number: string;
+  name: string;
+  tagline: string;
+  description: string;
+  scene: ReactNode;
+  items: { icon: LucideIcon; name: string; text: string }[];
+};
+
+const CATEGORIES: Category[] = [
+  {
+    id: "comunicacao-visual",
+    number: "01",
+    name: "Comunicação Visual",
+    tagline: "Sua loja vista de longe",
+    description:
+      "Projeto, fabricação e instalação de tudo que coloca o nome do seu negócio na rua: de dia com acabamento limpo, à noite com luz uniforme e sem pontos escuros.",
+    scene: <SignageScene />,
+    items: [
+      {
+        icon: Building2,
+        name: "Fachadas em ACM",
+        text: "Revestimento com recortes precisos e vedação para durar.",
+      },
+      {
+        icon: PenTool,
+        name: "Letras caixa",
+        text: "Em PVC, acrílico ou aço, com ou sem iluminação em LED.",
+      },
+      {
+        icon: Lightbulb,
+        name: "Luminosos",
+        text: "Caixas e placas iluminadas com face em lona ou acrílico.",
+      },
+      {
+        icon: Signpost,
+        name: "Totens",
+        text: "Sinalização vertical para calçada, condomínio ou estacionamento.",
+      },
+    ],
+  },
+  {
+    id: "adesivagem-envelopamento",
+    number: "02",
+    name: "Adesivagem e Envelopamento",
+    tagline: "Troque de pele sem trocar de lugar",
+    description:
+      "Vinil de alta aderência aplicado em veículos, vidros e paredes. A arte é impressa em cores vivas e aplicada com acabamento sem bolhas e sem emendas aparentes.",
+    scene: <VehicleScene />,
+    items: [
+      {
+        icon: Car,
+        name: "Envelopamento de veículos",
+        text: "Total ou parcial, carros, vans e frotas com identidade única.",
+      },
+      {
+        icon: Layers,
+        name: "Adesivos personalizados",
+        text: "Recorte eletrônico, impressão digital e laminação protetora.",
+      },
+      {
+        icon: Store,
+        name: "Aplicação em vitrines",
+        text: "Jateado, perfurado e impresso: privacidade e promoções visíveis.",
+      },
+    ],
+  },
+  {
+    id: "personalizados",
+    number: "03",
+    name: "Personalizados",
+    tagline: "Sua marca nas mãos das pessoas",
+    description:
+      "Desde uma caneca de presente até o kit de uniformes da equipe. Pequenas tiragens com a mesma atenção das grandes: arte conferida antes de produzir.",
+    scene: <CustomScene />,
+    items: [
+      {
+        icon: Shirt,
+        name: "Camisetas",
+        text: "Uniformes, eventos e coleções com estampa durável.",
+      },
+      {
+        icon: Gift,
+        name: "Brindes",
+        text: "Itens que o cliente guarda e usa, com sua marca à vista.",
+      },
+      {
+        icon: Coffee,
+        name: "Canecas",
+        text: "Sublimação em alta resolução, de uma unidade ao lote.",
+      },
+      {
+        icon: Megaphone,
+        name: "Materiais promocionais",
+        text: "Cartões, adesivos, banners e flyers para campanhas.",
+      },
+    ],
+  },
+  {
+    id: "identidade-visual",
+    number: "04",
+    name: "Identidade Visual",
+    tagline: "Antes da fachada, a marca",
+    description:
+      "Criamos o conjunto que faz seu comércio ser reconhecido em qualquer lugar: logotipo, cores, tipografia e aplicações prontas para a loja, a embalagem e as redes.",
+    scene: <BrandScene />,
+    items: [
+      {
+        icon: Sparkles,
+        name: "Criação de logotipo",
+        text: "Marca original, com versões para fundo claro, escuro e redes.",
+      },
+      {
+        icon: FileText,
+        name: "Papelaria",
+        text: "Cartão, papel timbrado, etiquetas e embalagens alinhados à marca.",
+      },
+      {
+        icon: Palette,
+        name: "Projetos de marca",
+        text: "Pacote completo para comércios que estão abrindo ou se renovando.",
+      },
+    ],
+  },
+];
+
+const PACKAGES = [
+  {
+    icon: Store,
+    name: "Pacote Fachada Completa",
+    badge: "Mais procurado",
+    text: "Projeto, fachada em ACM, letras caixa com LED e instalação. Seu ponto comercial pronto de uma vez.",
+    includes: [
+      "Projeto e simulação da fachada",
+      "ACM + letras caixa iluminadas",
+      "Instalação com equipe própria",
+    ],
+    message: "Olá! Tenho interesse no Pacote Fachada Completa. Podem me passar mais detalhes?",
+  },
+  {
+    icon: Zap,
+    name: "Envelopamento Expresso",
+    badge: "Entrega rápida",
+    text: "Envelopamento de veículo com prazo reduzido para quem não pode ficar muito tempo sem rodar.",
+    includes: [
+      "Arte aprovada pelo WhatsApp",
+      "Vinil com laminação protetora",
+      "Prazo prioritário de aplicação",
+    ],
+    message: "Olá! Quero saber sobre o Envelopamento Expresso. Podem me ajudar?",
+  },
+  {
+    icon: Rocket,
+    name: "Kit Lojista Personalizado",
+    badge: "Para quem está abrindo",
+    text: "Logotipo, papelaria e adesivagem de vitrine em um só pedido, com visual coerente do cartão à porta.",
+    includes: ["Criação de logotipo", "Cartões e adesivos de marca", "Vitrine adesivada"],
+    message: "Olá! Tenho interesse no Kit Lojista Personalizado. Podem me passar detalhes?",
+  },
+];
+
+const DIFFERENTIALS = [
+  {
+    icon: MapPin,
+    title: "Presença em Jundiaí e região",
+    text: "Atendimento próximo: vamos até o seu ponto, medimos no local e instalamos sem terceirizar.",
+  },
+  {
+    icon: ScanLine,
+    title: "Acabamento que se vê de perto",
+    text: "Cortes limpos, emendas escondidas, soldas lixadas e vedação revisada antes de entregar.",
+  },
+  {
+    icon: Clock,
+    title: "Agilidade com prazo combinado",
+    text: "Cronograma passado logo no orçamento e atualizações a cada etapa, pelo WhatsApp.",
+  },
+  {
+    icon: Ruler,
+    title: "Do pequeno ao projeto completo",
+    text: "Atendemos desde uma caneca até a identidade visual completa de um comércio, com o mesmo cuidado.",
+  },
+];
+
+const STEPS = [
+  { title: "Conversa", text: "Você conta a ideia e manda fotos ou medidas pelo WhatsApp." },
+  { title: "Projeto", text: "Criamos a arte e mostramos aplicada antes de produzir." },
+  { title: "Produção", text: "Impressão, corte e montagem na nossa oficina." },
+  { title: "Instalação", text: "Entrega ou aplicação no local, com conferência final." },
+];
+
+const MARQUEE = [
+  "Fachadas em ACM",
+  "Letras caixa",
+  "Luminosos",
+  "Totens",
+  "Envelopamento",
+  "Adesivos",
+  "Vitrines",
+  "Camisetas",
+  "Canecas",
+  "Brindes",
+  "Logotipos",
+  "Papelaria",
+];
+
+const NAV = [
+  { href: "#servicos", label: "Serviços" },
+  { href: "#destaques", label: "Destaques" },
+  { href: "#sobre", label: "Sobre" },
+  { href: "#contato", label: "Localização" },
+];
+
+/* ------------------------------------------------------------------ */
 
 function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <TopBar />
       <Header />
       <main>
         <Hero />
-        <TrustStrip />
+        <Marquee />
         <Services />
-        <Process />
-        <QuoteSection />
-        <Gallery />
-        <Reviews />
-        <InstagramFeed />
-        <FAQ />
-        <LocationCTA />
+        <Highlights />
+        <About />
+        <Location />
+        <FinalCta />
       </main>
       <Footer />
-      <StickyMobileCTA />
+      <FloatingWhatsApp />
     </div>
   );
 }
 
-/* ---------------- Top bar ---------------- */
-function TopBar() {
+/* ---------------- shared bits ---------------- */
+function WhatsAppButton({
+  children,
+  message,
+  className = "",
+}: {
+  children: ReactNode;
+  message?: string;
+  className?: string;
+}) {
   return (
-    <div className="hidden bg-primary text-primary-foreground md:block">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs">
-        <div className="flex items-center gap-5">
-          <span className="inline-flex items-center gap-1.5 whitespace-pre-line text-left">
-            <Clock className="h-3.5 w-3.5 shrink-0" />
-            <span>{"Seg a Sex · 08:30 – 17:30\nSábado · 09:00 – 12:00\n"}</span>
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5" /> Franco da Rocha & Região Metropolitana de SP
-          </span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="inline-flex items-center gap-1.5">
-            <Star className="h-3.5 w-3.5 fill-cta text-cta" /> 5,0 · 74 avaliações no Google
-          </span>
-        </div>
+    <a
+      href={whatsappLink(message)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center justify-center gap-2 rounded-md bg-cta px-5 py-3 text-sm font-bold text-cta-foreground shadow-[0_10px_30px_-10px_rgba(37,211,102,0.7)] transition hover:brightness-110 active:scale-[0.98] ${className}`}
+    >
+      <WhatsAppIcon className="h-5 w-5" />
+      {children}
+    </a>
+  );
+}
+
+function SectionTitle({
+  eyebrow,
+  title,
+  children,
+  center = false,
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  children?: ReactNode;
+  center?: boolean;
+}) {
+  return (
+    <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+      <div className={`flex items-center gap-3 ${center ? "justify-center" : ""}`}>
+        <PaintAccent className="h-7 w-10" />
+        <span className="font-[family-name:var(--font-tech)] text-[10px] uppercase tracking-[0.3em] text-brand sm:text-xs">
+          {eyebrow}
+        </span>
       </div>
+      <h2 className="mt-4 text-3xl font-extrabold leading-[1.05] sm:text-5xl">{title}</h2>
+      {children && (
+        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          {children}
+        </p>
+      )}
     </div>
   );
 }
 
-/* ---------------- Header ---------------- */
+/* ---------------- header ---------------- */
 function Header() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 md:flex md:justify-between">
-        <a href="#top" className="flex min-w-0 items-center gap-2">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        scrolled || open
+          ? "border-b border-white/10 bg-background/85 backdrop-blur-xl"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="flex h-8 items-center justify-center gap-2 border-b border-white/10 bg-[#0b1430] px-3 text-center text-[11px] text-white/80 sm:text-xs">
+        <span className="rounded bg-[#ffc61a] px-1.5 py-0.5 font-[family-name:var(--font-tech)] text-[8px] font-bold uppercase tracking-widest text-black sm:text-[9px]">
+          Demonstração
+        </span>
+        <span>
+          Site criado por <strong className="font-semibold text-white">Ryan Pereira</strong>
+        </span>
+        <img src={ryanMark} alt="Logo Ryan Pereira" height={20} className="h-5 w-auto" />
+      </div>
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+        <a href="#topo" className="flex items-center gap-3" aria-label="Scorpions Artes — início">
           <img
-            src={logoAsset.url}
-            alt="Modal Esquadrias"
-            className="h-10 w-10 shrink-0 rounded-lg object-contain"
+            src={logo}
+            alt=""
             width={40}
             height={40}
+            className="h-10 w-10 rounded-full ring-1 ring-white/15"
           />
-          <div className="min-w-0 leading-tight">
-            <div className="truncate font-display text-lg font-extrabold text-foreground">
-              Modal Esquadrias
-            </div>
-            <div className="truncate text-[11px] uppercase tracking-wider text-muted-foreground">
-              ALUMÍNIO SOB MEDIDA
-            </div>
-          </div>
+          <span className="leading-none">
+            <span className="block font-[family-name:var(--font-tech)] text-[13px] tracking-[0.14em] sm:text-sm">
+              SCORPIONS
+            </span>
+            <span className="mt-1 block font-[family-name:var(--font-tech)] text-[8px] tracking-[0.5em] text-brand">
+              ARTES
+            </span>
+          </span>
         </a>
 
-        <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
-          <a href="#servicos" className="hover:text-foreground">Serviços</a>
-          <a href="#processo" className="hover:text-foreground">Como funciona</a>
-          <a href="#galeria" className="hover:text-foreground">Galeria</a>
-          <a href="#avaliacoes" className="hover:text-foreground">Avaliações</a>
-          <a href="#faq" className="hover:text-foreground">FAQ</a>
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Principal">
+          {NAV.map((n) => (
+            <a
+              key={n.href}
+              href={n.href}
+              className="text-sm font-medium text-white/75 transition hover:text-white"
+            >
+              {n.label}
+            </a>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${PHONE_TEL}`}
-            className="hidden items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand md:inline-flex"
+          <WhatsAppButton className="px-3.5 py-2.5 sm:px-5">
+            <span>Orçamento</span>
+          </WhatsAppButton>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            className="grid h-11 w-11 place-items-center rounded-md border border-white/15 md:hidden"
           >
-            <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
-          </a>
-          <a
-            href="#orcamento"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-cta px-3 py-2 text-sm font-semibold text-cta-foreground shadow-sm transition hover:brightness-95"
-          >
-            Orçamento grátis <ArrowRight className="h-4 w-4" />
-          </a>
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+
+      {open && (
+        <nav className="border-t border-white/10 px-4 pb-6 pt-2 md:hidden" aria-label="Menu móvel">
+          {NAV.map((n) => (
+            <a
+              key={n.href}
+              href={n.href}
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between border-b border-white/5 py-4 text-lg font-semibold"
+            >
+              {n.label}
+              <ArrowRight className="h-4 w-4 text-brand" />
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }
 
-/* ---------------- Hero ---------------- */
+/* ---------------- hero ---------------- */
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="absolute inset-0">
-        <img
-          src={heroAsset.url}
-          alt="Esquadrias de alumínio pretas em área externa com piscina e acabamento moderno"
-          className="h-full w-full object-cover"
-          width={1600}
-          height={1200}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "var(--gradient-hero)" }}
-          aria-hidden
-        />
-      </div>
+    <section id="topo" className="relative isolate overflow-hidden pt-32 sm:pt-36">
+      <Parallax
+        speed={0.18}
+        className="pointer-events-none absolute -right-52 top-0 -z-10 w-[480px] opacity-20 sm:-right-24 sm:top-10 sm:w-[600px] sm:opacity-60"
+      >
+        <PaintBurst className="w-full" seed={7} />
+      </Parallax>
+      <div className="pointer-events-none absolute -left-32 top-1/3 -z-10 h-80 w-80 rounded-full bg-brand/25 blur-[110px]" />
 
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-12 md:py-24 lg:py-28">
-        <div className="md:col-span-7 lg:col-span-7">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white ring-1 ring-white/20 backdrop-blur">
-            <Star className="h-3.5 w-3.5 fill-cta text-cta" /> Nota 5,0 · 74 avaliações no Google
-          </span>
-          <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-            Esquadrias de alumínio sob medida em{" "}
-            <span className="text-cta">Franco da Rocha</span>.
-          </h1>
-          <p className="mt-5 max-w-xl text-base text-white/85 sm:text-lg">
-            Janelas, portas, box com fabricação própria, instalação profissional e prazo
-            cumprido. Orçamento sem compromisso.
-          </p>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-24 lg:pt-8">
+        <div>
+          <Reveal>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-[family-name:var(--font-tech)] text-[9px] uppercase tracking-[0.25em] text-white/80 sm:text-[10px]">
+              <span className="h-1.5 w-1.5 rounded-full bg-cta shadow-[0_0_10px_#25d366]" />
+              Jundiaí · SP e região
+            </span>
+          </Reveal>
+          <Reveal delay={80}>
+            <h1 className="mt-6 text-[2.6rem] font-extrabold leading-[0.98] sm:text-6xl lg:text-7xl">
+              Comunicação visual que <span className="text-paint">transforma</span> sua marca
+            </h1>
+          </Reveal>
+          <Reveal delay={160}>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+              Fachadas em ACM, envelopamento, personalizados e identidade visual: do projeto à
+              instalação, com acabamento caprichado e prazo combinado.
+            </p>
+          </Reveal>
+          <Reveal delay={240} className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href={`tel:${PHONE_TEL}`}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-cta px-6 py-4 text-base font-bold text-cta-foreground shadow-lg shadow-black/20 transition hover:brightness-95"
+              href="#servicos"
+              className="clip-tech inline-flex items-center justify-center gap-2 bg-brand px-7 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-[0_12px_40px_-12px_rgba(47,107,255,0.9)] transition hover:brightness-110 active:scale-[0.98]"
             >
-              <Phone className="h-5 w-5" /> Ligar {PHONE_DISPLAY}
+              Ver serviços <ArrowRight className="h-4 w-4" />
             </a>
-            <a
-              href="#orcamento"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-4 text-base font-semibold text-white backdrop-blur transition hover:bg-white/20"
-            >
-              Pedir orçamento online <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-
-          <ul className="mt-8 grid grid-cols-2 gap-3 text-sm text-white/90 sm:grid-cols-3">
-            {[
-              "Garantia de 3 anos",
-              "Fabricação própria",
-              "Instalação garantida",
-            ].map((t) => (
-              <li key={t} className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-cta" /> {t}
+            <WhatsAppButton className="py-4">Falar no WhatsApp</WhatsAppButton>
+          </Reveal>
+          <Reveal delay={320}>
+            <ul className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/10 pt-6 text-xs text-white/60 sm:text-sm">
+              <li>
+                <strong className="block font-[family-name:var(--font-display)] text-lg text-white sm:text-xl">
+                  ACM + LED
+                </strong>
+                fachadas
               </li>
-            ))}
-          </ul>
+              <li>
+                <strong className="block font-[family-name:var(--font-display)] text-lg text-white sm:text-xl">
+                  Vinil
+                </strong>
+                carros e vitrines
+              </li>
+              <li>
+                <strong className="block font-[family-name:var(--font-display)] text-lg text-white sm:text-xl">
+                  Do zero
+                </strong>
+                logo e marca
+              </li>
+            </ul>
+          </Reveal>
         </div>
 
-        <div className="md:col-span-5 lg:col-span-5">
-          <QuoteCard compact />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Trust strip ---------------- */
-function TrustStrip() {
-  const items = [
-    { icon: ShieldCheck, label: "Oferecemos Garantia !\u00a0" },
-    { icon: Hammer, label: "Fabricação própria" },
-    { icon: Ruler, label: "Medimos em sua Residência\n" },
-    { icon: Truck, label: "Entrega e instalação" },
-  ];
-  return (
-    <section className="border-b border-border bg-surface">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 sm:px-6 md:grid-cols-4">
-        {items.map(({ icon: Icon, label }) => (
-          <div key={label} className="flex items-center gap-3">
-            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand">
-              <Icon className="h-5 w-5" />
+        <Reveal delay={200}>
+          <div className="relative">
+            <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand/40 via-transparent to-[#ff2db4]/30 blur-2xl" />
+            <div className="card-edge clip-tech animate-float aspect-[4/3.1] overflow-hidden rounded-sm shadow-2xl">
+              <StorefrontScene />
             </div>
-            <span className="text-sm font-semibold text-foreground">{label}</span>
+            <div className="absolute -bottom-4 left-4 rounded-md border border-white/10 bg-background/90 px-4 py-2.5 text-xs backdrop-blur sm:left-auto sm:right-4">
+              <span className="font-[family-name:var(--font-tech)] text-[9px] uppercase tracking-[0.25em] text-brand">
+                Ilustração
+              </span>
+              <p className="mt-1 text-white/70">Imagem de apoio, trocamos por fotos reais</p>
+            </div>
           </div>
-        ))}
+        </Reveal>
       </div>
     </section>
   );
 }
 
-/* ---------------- Services ---------------- */
-function Services() {
-  const services = [
-    {
-      title: "Janelas de alumínio",
-      desc: "Maxim-ar, correr, camarão e basculantes. Linhas Suprema, Gold e Reforçada.",
-      img: janelaImg.url,
-    },
-    {
-      title: "Portas de alumínio",
-      desc: "Portas de correr, pivotantes e sociais. Vidros temperados e laminados.",
-      img: portaImg.url,
-    },
-    {
-      title: "Box para banheiro",
-      desc: "Box de correr e articulado, vidro incolor, fumê ou temperado 8mm.",
-      img: boxImg.url,
-    },
-  ];
+function Marquee() {
+  const row = [...MARQUEE, ...MARQUEE];
   return (
-    <section id="servicos" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-      <SectionHeader
-        eyebrow="Nossos serviços"
-        title="Soluções em alumínio e vidro para sua obra"
-        desc="Fabricamos e instalamos esquadrias sob medida para residências, comércios e obras. Atendemos toda a região metropolitana de São Paulo."
-      />
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {services.map((s) => (
-          <article
-            key={s.title}
-            className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
-          >
-            <div className="aspect-[4/3] overflow-hidden bg-muted">
-              <img
-                src={s.img}
-                alt={s.title}
-                loading="lazy"
-                width={1200}
-                height={900}
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div className="p-6">
-              <h3 className="font-display text-xl font-bold text-foreground">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-              <a
-                href="#orcamento"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline"
-              >
-                Pedir orçamento <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Process ---------------- */
-function Process() {
-  const steps = [
-    { n: "01", t: "Contato", d: "Você liga ou envia o pedido pelo formulário. Respondemos no mesmo dia." },
-    { n: "02", t: "Medição", d: "Agendamos visita técnica no local da obra mediante a conversa." },
-    { n: "03", t: "Projeto & orçamento", d: "Enviamos proposta detalhada com prazo e valores fixos." },
-    { n: "04", t: "Fabricação & instalação", d: "Produção própria, entrega e instalação com equipe treinada." },
-  ];
-  return (
-    <section id="processo" className="bg-surface">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <SectionHeader
-          eyebrow="Como funciona"
-          title="Do primeiro contato à instalação"
-          desc="Um processo simples, transparente e sem surpresas."
-        />
-        <ol className="mt-12 grid gap-6 md:grid-cols-4">
-          {steps.map((s) => (
-            <li
-              key={s.n}
-              className="relative rounded-2xl border border-border bg-card p-6 shadow-sm"
-            >
-              <div className="font-display text-3xl font-extrabold text-brand/30">{s.n}</div>
-              <h3 className="mt-2 font-display text-lg font-bold text-foreground">{s.t}</h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">{s.d}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Quote section ---------------- */
-function QuoteSection() {
-  return (
-    <section id="orcamento" className="relative overflow-hidden bg-primary text-primary-foreground">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 md:grid-cols-2">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium ring-1 ring-white/20">
-            Orçamento em até 24h
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-extrabold sm:text-4xl">
-            Peça seu orçamento gratuito
-          </h2>
-          <p className="mt-3 max-w-md text-white/80">
-            Conte o que você precisa. Retornamos rapidamente com uma proposta clara e sem
-            compromisso.
-          </p>
-
-          <div className="mt-8 space-y-4 text-sm">
-            <a
-              href={`tel:${PHONE_TEL}`}
-              className="flex items-center gap-3 rounded-xl bg-white/5 p-4 ring-1 ring-white/10 transition hover:bg-white/10"
-            >
-              <div className="grid h-10 w-10 place-items-center rounded-lg bg-cta text-cta-foreground">
-                <Phone className="h-5 w-5" />
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-wider text-white/60">Ligue agora</div>
-                <div className="font-display text-lg font-bold">{PHONE_DISPLAY}</div>
-              </div>
-            </a>
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-xl bg-white/5 p-4 ring-1 ring-white/10 transition hover:bg-white/10"
-            >
-              <div className="grid h-10 w-10 place-items-center rounded-lg bg-[oklch(0.75_0.17_150)] text-[oklch(0.15_0.05_150)]">
-                <MessageCircle className="h-5 w-5" />
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-wider text-white/60">WhatsApp</div>
-                <div className="font-display text-lg font-bold">Falar no WhatsApp</div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <QuoteCard />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function QuoteCard({ compact = false }: { compact?: boolean }) {
-  const [state, setState] = useState<"idle" | "sent">("idle");
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const name = String(fd.get("name") || "").trim();
-    const phone = String(fd.get("phone") || "").trim();
-    const address = String(fd.get("address") || "").trim();
-    const service = String(fd.get("service") || "").trim();
-    const details = String(fd.get("details") || "").trim();
-
-    const lines = [
-      "Olá! Encontrei o site da Modal Esquadrias e gostaria de solicitar um orçamento. Poderiam me ajudar?",
-      "",
-      name && `*Nome:* ${name}`,
-      phone && `*Telefone:* ${phone}`,
-      address && `*Endereço:* ${address}`,
-      service && `*Serviço:* ${service}`,
-      details && `*Detalhes:* ${details}`,
-    ].filter(Boolean);
-
-    const url = `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(lines.join("\n"))}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-    setState("sent");
-  }
-
-  if (state === "sent") {
-    return (
-      <div className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-xl">
-        <div className="grid h-12 w-12 place-items-center rounded-full bg-brand/10 text-brand">
-          <CheckCircle2 className="h-6 w-6" />
-        </div>
-        <h3 className="mt-4 font-display text-xl font-bold">Pedido recebido!</h3>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Entraremos em contato em até 24h úteis. Precisa de urgência? Ligue{" "}
-          <a href={`tel:${PHONE_TEL}`} className="font-semibold text-brand hover:underline">
-            {PHONE_DISPLAY}
-          </a>
-          .
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form
-      onSubmit={onSubmit}
-      className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-xl"
+    <div
+      className="relative overflow-hidden border-y border-white/10 bg-white/[0.02] py-4"
+      aria-hidden="true"
     >
-      {!compact && (
-        <h3 className="font-display text-xl font-bold text-foreground">Solicitar orçamento</h3>
-      )}
-      {compact && (
-        <div className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand">
-          <span className="inline-block h-2 w-2 rounded-full bg-cta" /> Resposta em até 24h
-        </div>
-      )}
-
-      <div className={`grid gap-3 ${compact ? "" : "mt-4"}`}>
-        <Field label="Nome" name="name" required placeholder="Seu nome completo" />
-        <div className="grid gap-3 sm:grid-cols-2">
-          <Field label="Telefone" name="phone" type="tel" required placeholder="(11) 90000-0000" />
-          <Field label="Endereço" name="address" placeholder="Rua, número, bairro, cidade" />
-        </div>
-        <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            Tipo de serviço
-          </label>
-          <select
-            name="service"
-            className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground outline-none ring-brand/30 focus:ring-2"
+      <div className="animate-marquee flex w-max gap-10 whitespace-nowrap">
+        {row.map((w, i) => (
+          <span
+            key={i}
+            className="flex items-center gap-10 font-[family-name:var(--font-tech)] text-[11px] uppercase tracking-[0.3em] text-white/55"
           >
-            <option>Janelas</option>
-            <option>Portas</option>
-            <option>Box para banheiro</option>
-            <option>Outros</option>
-          </select>
-        </div>
-        <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            Detalhes (opcional)
-          </label>
-          <textarea
-            name="details"
-            rows={3}
-            placeholder="Medidas aproximadas, endereço da obra, prazo..."
-            className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground outline-none ring-brand/30 focus:ring-2"
-          />
-        </div>
-        <button
-          type="submit"
-          className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-cta px-5 py-3.5 text-sm font-bold text-cta-foreground shadow-sm transition hover:brightness-95"
-        >
-          Enviar pedido de orçamento <ArrowRight className="h-4 w-4" />
-        </button>
-        <p className="text-center text-[11px] text-muted-foreground">
-          Ao enviar, você concorda em receber nosso contato. Não enviamos spam.
-        </p>
+            {w}
+            <span className="h-1.5 w-1.5 rotate-45 bg-brand" />
+          </span>
+        ))}
       </div>
-    </form>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  required,
-  placeholder,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  placeholder?: string;
-}) {
-  return (
-    <div>
-      <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-        {label}
-        {required && <span className="text-cta"> *</span>}
-      </label>
-      <input
-        name={name}
-        type={type}
-        required={required}
-        placeholder={placeholder}
-        className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground outline-none ring-brand/30 focus:ring-2"
-      />
     </div>
   );
 }
 
-/* ---------------- Gallery ---------------- */
-function Gallery() {
-  const imgs = [
-    { src: heroAsset.url, alt: "Esquadrias de alumínio pretas em área externa com piscina e acabamento moderno" },
-    { src: fotoModal5.url, alt: "Fachada de casa com janelas de alumínio branco sob medida" },
-    { src: fotoModal1.url, alt: "Fachada azul com janelas de alumínio branco sob medida" },
-    { src: fotoModal2.url, alt: "Residência branca com gradil e portão de alumínio preto" },
-    { src: fotoModal3.url, alt: "Varanda com guarda-corpo e esquadrias de alumínio" },
-    { src: fotoModal4.url, alt: "Casa moderna com portão de alumínio preto e guarda-corpo de vidro" },
-  ];
+/* ---------------- services ---------------- */
+function Services() {
   return (
-    <section id="galeria" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-      <SectionHeader
-        eyebrow="Projetos entregues"
-        title="Trabalhos que falam por si"
-        desc="Uma amostra dos serviços recentes da Modal Esquadrias em residências e comércios."
-      />
-      <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
-        {imgs.map((item, i) => (
-          <div
-            key={i}
-            className={`overflow-hidden rounded-xl bg-muted ${
-              i === 0 ? "col-span-2 row-span-2 aspect-square md:aspect-auto" : "aspect-square"
-            }`}
+    <section id="servicos" className="relative py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <Reveal>
+          <SectionTitle
+            eyebrow="Catálogo de serviços"
+            title={
+              <>
+                O que a <span className="text-paint">Scorpions</span> faz por você
+              </>
+            }
           >
-            <img
-              src={item.src}
-              alt={item.alt}
-              loading="lazy"
-              width={1200}
-              height={1200}
-              className="h-full w-full object-cover transition duration-500 hover:scale-105"
-            />
-          </div>
-        ))}
-      </div>
+            Quatro frentes de trabalho, uma só equipe. Escolha a categoria e peça o orçamento direto
+            pelo WhatsApp.
+          </SectionTitle>
+        </Reveal>
 
-      <div className="mt-16">
-        <div className="mb-8 text-center">
-          <span className="text-xs font-semibold uppercase tracking-wider text-brand">
-            Vídeos
-          </span>
-          <h3 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl">
-            Veja alguns de nossos melhores projetos !
-          </h3>
-        </div>
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-6 sm:overflow-visible">
-          {[modalVideo1, modalVideo2, modalVideo3].map((v, i) => (
-            <div
-              key={i}
-              className="relative w-[85%] shrink-0 snap-center overflow-hidden rounded-xl bg-black shadow-lg sm:w-auto"
+        <nav
+          aria-label="Categorias"
+          className="sticky top-24 z-30 -mx-4 mt-8 flex gap-2 overflow-x-auto bg-background/80 px-4 py-3 backdrop-blur-xl [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0"
+        >
+          {CATEGORIES.map((c) => (
+            <a
+              key={c.id}
+              href={`#${c.id}`}
+              className="shrink-0 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white/85 transition hover:border-brand hover:text-white"
             >
-              <video
-                src={v.url}
-                controls
-                playsInline
-                preload="metadata"
-                className="aspect-[9/16] h-full w-full object-cover"
-              />
-            </div>
+              <span className="mr-2 font-[family-name:var(--font-tech)] text-[10px] text-brand">
+                {c.number}
+              </span>
+              {c.name}
+            </a>
+          ))}
+        </nav>
+
+        <div className="mt-10 space-y-20 sm:space-y-28">
+          {CATEGORIES.map((c, i) => (
+            <CategoryBlock key={c.id} category={c} flip={i % 2 === 1} />
           ))}
         </div>
       </div>
@@ -579,293 +613,399 @@ function Gallery() {
   );
 }
 
-/* ---------------- Reviews (ElfSight Google Reviews) ---------------- */
-function Reviews() {
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (document.getElementById("elfsight-platform")) return;
-    const script = document.createElement("script");
-    script.id = "elfsight-platform";
-    script.src = "https://elfsightcdn.com/platform.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
-
+function CategoryBlock({ category: c, flip }: { category: Category; flip: boolean }) {
   return (
-    <section id="avaliacoes" className="bg-surface">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <div className="text-center">
-          <span className="text-xs font-semibold uppercase tracking-wider text-brand">
-            Avaliações
+    <article id={c.id} className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
+      <Reveal className={flip ? "lg:order-2" : ""}>
+        <div className="card-edge clip-tech relative aspect-[4/3] overflow-hidden rounded-sm">
+          <Parallax speed={0.05} clamp={26} className="h-full w-full scale-[1.14]">
+            {c.scene}
+          </Parallax>
+          <span className="absolute left-3 top-3 rounded bg-background/80 px-2.5 py-1 font-[family-name:var(--font-tech)] text-xs text-white backdrop-blur sm:text-sm">
+            {c.number}
           </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold sm:text-4xl">
-            O que dizem nossos clientes
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Avaliações reais do nossos clientes no Google, qualidade garantida!
-          </p>
         </div>
-        <div className="mt-10">
-          <div
-            className="elfsight-app-fdc56df8-ede1-4a1d-ac65-f1b27fa5159e"
-            data-elfsight-app-lazy
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
+        <p className="mt-2 text-[11px] text-white/40">Imagem ilustrativa</p>
+      </Reveal>
 
-/* ---------------- Instagram Feed ---------------- */
-function InstagramFeed() {
-  const handle = "modal.esquadrias";
-  const profileUrl = `https://www.instagram.com/${handle}/`;
-  return (
-    <section id="instagram" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-      <SectionHeader
-        eyebrow="Nosso Instagram"
-        title="Acompanhe nossos projetos"
-        desc="Veja fotos reais de esquadrias, portas e janelas instaladas por nossa equipe."
-        center
-      />
-      <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_360px]">
-        <div className="overflow-hidden rounded-2xl border border-border bg-card">
-          <iframe
-            src={`https://www.instagram.com/${handle}/embed`}
-            title={`Instagram @${handle}`}
-            className="h-[720px] w-full"
-            loading="lazy"
-            frameBorder={0}
-            scrolling="no"
-            allow="encrypted-media"
-          />
+      <Reveal delay={100} className={flip ? "lg:order-1" : ""}>
+        <div className="flex items-center gap-3">
+          <PaintAccent className="h-6 w-9" />
+          <span className="text-sm font-semibold uppercase tracking-widest text-brand">
+            {c.tagline}
+          </span>
         </div>
-        <aside className="flex flex-col justify-center gap-4 rounded-2xl border border-border bg-surface p-8">
-          <div className="text-sm font-semibold uppercase tracking-wider text-cta">@{handle}</div>
-          <h3 className="text-2xl font-bold text-foreground">Siga a Modal Esquadrias</h3>
-          <p className="text-sm text-muted-foreground">
-            Fotos de instalações, bastidores da fábrica e novidades em alumínio sob medida. Toque em uma publicação para ver no Instagram.
-          </p>
-          <a
-            href={profileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-lg bg-cta px-5 py-3 font-semibold text-cta-foreground transition hover:opacity-90"
-          >
-            Abrir no Instagram
-          </a>
-        </aside>
-      </div>
-    </section>
-  );
-}
+        <h3 className="mt-3 text-3xl font-extrabold sm:text-4xl">{c.name}</h3>
+        <p className="mt-4 leading-relaxed text-white/70">{c.description}</p>
 
-/* ---------------- FAQ ---------------- */
-function FAQ() {
-  const faqs = [
-    {
-      q: "Qual o prazo de fabricação e instalação?",
-      a: "O prazo de fabricação e instalação é de acordo com a complexidade do seu projeto, porém garantimos que será no menor tempo possível :)",
-    },
-    {
-      q: "Quais regiões vocês atendem?",
-      a: "Franco da Rocha, Francisco Morato, Caieiras, Mairiporã e toda a região metropolitana de São Paulo.\nPara demais regiões de São Paulo, entrar em contato conosco",
-    },
-    {
-      q: "Existe garantia dos produtos?",
-      a: "Sim. Todas as esquadrias possuem garantia por escrito contra defeitos de fabricação e instalação.",
-    },
-  ];
-  return (
-    <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
-      <SectionHeader
-        eyebrow="Dúvidas frequentes"
-        title="Perguntas mais comuns"
-        desc="Não encontrou o que procura? Fale conosco pelo telefone ou WhatsApp."
-        center
-      />
-      <div className="mt-10 divide-y divide-border rounded-2xl border border-border bg-card">
-        {faqs.map((f, i) => (
-          <details key={i} className="group p-5">
-            <summary className="flex cursor-pointer items-center justify-between text-left font-semibold text-foreground">
-              {f.q}
-              <span className="ml-4 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-secondary text-secondary-foreground transition group-open:rotate-45">
-                +
+        <ul className="mt-6 divide-y divide-white/10 border-y border-white/10">
+          {c.items.map(({ icon: Icon, name, text }) => (
+            <li key={name} className="flex gap-4 py-4">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-brand/15 text-brand">
+                <Icon className="h-5 w-5" />
               </span>
-            </summary>
-            <p className="mt-3 whitespace-pre-line text-sm text-muted-foreground">{f.a}</p>
-          </details>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Location CTA ---------------- */
-function LocationCTA() {
-  return (
-    <section className="border-t border-border bg-surface">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 md:grid-cols-2">
-        <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-brand">
-            Nossa localização
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground">
-            Visite nossa loja em Franco da Rocha
-          </h2>
-          <ul className="mt-6 space-y-4 text-sm">
-            <li className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
-              <span className="text-foreground">{ADDRESS}</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <Phone className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
-              <a href={`tel:${PHONE_TEL}`} className="font-semibold text-foreground hover:text-brand">
-                {PHONE_DISPLAY}
-              </a>
-            </li>
-            <li className="flex items-start gap-3">
-              <Clock className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
-              <span className="whitespace-pre-line text-foreground">
-                {`Segunda a Sexta · 08:30 às 17:30\nSábado · 09:00 ás 12:00\u00a0`}
+              <span>
+                <span className="block font-semibold">{name}</span>
+                <span className="mt-0.5 block text-sm leading-relaxed text-white/60">{text}</span>
               </span>
             </li>
-          </ul>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
-            >
-              Traçar rota <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href={`tel:${PHONE_TEL}`}
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
-            >
-              <Phone className="h-4 w-4" /> Ligar agora
-            </a>
+          ))}
+        </ul>
+
+        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <span className="text-xs uppercase tracking-widest text-white/50">Faixa de preço</span>
+            <p className="font-[family-name:var(--font-display)] text-2xl font-extrabold">
+              a partir de <span className="text-paint">R$ XX</span>
+            </p>
+            <span className="text-[11px] text-white/40">Valor fictício, ilustrativo</span>
           </div>
+          <WhatsAppButton message={`Olá! Gostaria de um orçamento de ${c.name}.`}>
+            Pedir orçamento
+          </WhatsAppButton>
         </div>
-        <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
-          <iframe
-            title="Modal Esquadrias no mapa"
-            src="https://www.google.com/maps?q=Av.+Alfredo+de+Paula,+456,+Franco+da+Rocha+SP&output=embed"
-            className="h-full min-h-[320px] w-full"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+      </Reveal>
+    </article>
+  );
+}
+
+/* ---------------- highlights ---------------- */
+function Highlights() {
+  return (
+    <section
+      id="destaques"
+      className="relative overflow-hidden border-y border-white/10 bg-surface py-20 sm:py-28"
+    >
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+        <Reveal>
+          <SectionTitle
+            eyebrow="Destaques"
+            title={
+              <>
+                Os mais <span className="text-paint">procurados</span>
+              </>
+            }
+            center
+          >
+            Pacotes pensados para resolver de uma vez o que o comércio de Jundiaí mais pede.
+          </SectionTitle>
+        </Reveal>
+
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {PACKAGES.map(({ icon: Icon, ...p }, i) => (
+            <Reveal key={p.name} delay={i * 110}>
+              <div className="card-edge group flex h-full flex-col rounded-lg p-6 transition duration-300 hover:-translate-y-1">
+                <div className="flex items-start justify-between">
+                  <span className="grid h-12 w-12 place-items-center rounded-md bg-brand text-white shadow-[0_10px_30px_-8px_rgba(47,107,255,0.8)]">
+                    <Icon className="h-6 w-6" />
+                  </span>
+                  <span className="rounded-full border border-[#ffc61a]/40 bg-[#ffc61a]/10 px-3 py-1 text-[11px] font-semibold text-[#ffc61a]">
+                    {p.badge}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-2xl font-extrabold">{p.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/65">{p.text}</p>
+                <ul className="mt-5 space-y-2 text-sm text-white/80">
+                  {p.includes.map((inc) => (
+                    <li key={inc} className="flex items-start gap-2.5">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-[#2fe07a]" />
+                      {inc}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto pt-6">
+                  <p className="text-xs uppercase tracking-widest text-white/50">Investimento</p>
+                  <p className="mb-4 font-[family-name:var(--font-display)] text-2xl font-extrabold">
+                    a partir de R$ XX
+                  </p>
+                  <WhatsAppButton message={p.message} className="w-full">
+                    Quero este pacote
+                  </WhatsAppButton>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
+        <p className="mt-8 text-center text-xs text-white/40">
+          Pacotes e valores são exemplos ilustrativos, as condições reais serão definidas pela
+          Scorpions Artes.
+        </p>
       </div>
     </section>
   );
 }
 
-/* ---------------- Footer ---------------- */
-function Footer() {
+/* ---------------- about ---------------- */
+function About() {
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
-        <div className="md:col-span-2">
-          <div className="flex items-center gap-2">
-            <img
-              src={logoAsset.url}
-              alt="Logo Modal Esquadrias"
-              className="h-10 w-10 rounded-lg bg-white object-contain p-1"
-            />
-            <div>
-              <div className="font-display text-lg font-extrabold">Modal Esquadrias</div>
-              <div className="text-xs text-white/60">Esquadrias de alumínio · Vidros</div>
+    <section id="sobre" className="relative py-20 sm:py-28">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <Reveal>
+          <div className="lg:sticky lg:top-28">
+            <SectionTitle
+              eyebrow="A marca"
+              title={
+                <>
+                  Do adesivo ao projeto <span className="text-paint">completo</span>
+                </>
+              }
+            >
+              A Scorpions Artes nasceu da combinação entre técnica e criatividade: gráfica digital,
+              corte, serralheria leve e design sob o mesmo teto. É isso que nos permite atender o
+              autônomo que precisa de 20 adesivos e o comerciante que quer a loja inteira com a
+              mesma identidade.
+            </SectionTitle>
+            <div className="relative mt-8 flex items-center gap-5">
+              <img
+                src={logo}
+                alt="Logo Scorpions Artes"
+                width={112}
+                height={112}
+                className="h-24 w-24 rounded-full ring-1 ring-white/15 sm:h-28 sm:w-28"
+              />
+              <p className="max-w-[16rem] text-sm leading-relaxed text-white/60">
+                Moderna, tecnológica e colorida no ponto certo: assim como a marca que carregamos.
+              </p>
             </div>
           </div>
-          <p className="mt-4 max-w-md text-sm text-white/70">
-            Fabricação, entrega e instalação de esquadrias de alumínio sob medida. Atendendo
-            Franco da Rocha e toda a região metropolitana de São Paulo com nota 5,0 no Google.
-          </p>
-        </div>
+        </Reveal>
+
         <div>
-          <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white/80">
-            Contato
-          </h4>
-          <ul className="mt-4 space-y-2 text-sm text-white/80">
-            <li>
-              <a href={`tel:${PHONE_TEL}`} className="hover:text-cta">
-                {PHONE_DISPLAY}
-              </a>
-            </li>
-            <li>
-              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="hover:text-cta">
-                WhatsApp
-              </a>
-            </li>
-            <li className="text-white/60">{ADDRESS}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white/80">
-            Navegação
-          </h4>
-          <ul className="mt-4 space-y-2 text-sm text-white/80">
-            <li><a href="#servicos" className="hover:text-cta">Serviços</a></li>
-            <li><a href="#processo" className="hover:text-cta">Como funciona</a></li>
-            <li><a href="#galeria" className="hover:text-cta">Galeria</a></li>
-            <li><a href="#avaliacoes" className="hover:text-cta">Avaliações</a></li>
-            <li><a href="#orcamento" className="hover:text-cta">Orçamento</a></li>
-          </ul>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {DIFFERENTIALS.map(({ icon: Icon, title, text }, i) => (
+              <Reveal key={title} delay={i * 90}>
+                <div className="card-edge h-full rounded-lg p-6">
+                  <Icon className="h-7 w-7 text-brand" />
+                  <h3 className="mt-4 text-lg font-bold">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/65">{text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal className="mt-10">
+            <h3 className="font-[family-name:var(--font-tech)] text-xs uppercase tracking-[0.3em] text-white/60">
+              Como trabalhamos
+            </h3>
+            <ol className="mt-6 grid gap-6 sm:grid-cols-4">
+              {STEPS.map((s, i) => (
+                <li key={s.title} className="relative border-t border-brand/50 pt-4">
+                  <span className="font-[family-name:var(--font-tech)] text-xs text-brand">
+                    0{i + 1}
+                  </span>
+                  <p className="mt-1 font-bold">{s.title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-white/60">{s.text}</p>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
         </div>
       </div>
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:px-6">
-          <div>© {new Date().getFullYear()} Modal Esquadrias Ltda. Todos os direitos reservados.</div>
-          <div>CNPJ 35.508.486/0001-58 / Franco da Rocha - SP</div>
+    </section>
+  );
+}
+
+/* ---------------- location ---------------- */
+function Location() {
+  return (
+    <section id="contato" className="relative border-t border-white/10 bg-surface py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <Reveal>
+          <SectionTitle
+            eyebrow="Localização e horários"
+            title={
+              <>
+                Venha conhecer a <span className="text-paint">oficina</span>
+              </>
+            }
+          >
+            Atendemos em Jundiaí e cidades vizinhas. Para orçamentos, o caminho mais rápido é o
+            WhatsApp.
+          </SectionTitle>
+        </Reveal>
+
+        <div className="mt-10 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+          <Reveal>
+            <div className="card-edge flex h-full flex-col rounded-lg p-6 sm:p-8">
+              <div className="flex gap-4">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-brand/15 text-brand">
+                  <MapPin className="h-6 w-6" />
+                </span>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-white/50">Endereço</p>
+                  <p className="mt-1 text-xl font-bold">{ADDRESS}</p>
+                  <p className="text-white/65">{CITY}</p>
+                </div>
+              </div>
+              <div className="my-6 divider-paint" />
+              <div className="flex gap-4">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-brand/15 text-brand">
+                  <Clock className="h-6 w-6" />
+                </span>
+                <dl className="w-full">
+                  <p className="text-xs uppercase tracking-widest text-white/50">
+                    Horário de funcionamento
+                  </p>
+                  {HOURS.map((h) => (
+                    <div
+                      key={h.day}
+                      className="mt-2 flex justify-between gap-4 border-b border-white/5 pb-2 last:border-0"
+                    >
+                      <dt className="text-white/75">{h.day}</dt>
+                      <dd className="whitespace-pre text-right font-semibold">{h.time}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+              <div className="mt-6 rounded-md border border-[#ffc61a]/30 bg-[#ffc61a]/10 p-4 text-sm leading-relaxed text-[#ffd966]">
+                <strong>Valores ilustrativos.</strong> Preços e pacotes exibidos são exemplos e
+                serão substituídos pelos valores reais da Scorpions Artes.
+              </div>
+              <a
+                href={MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand hover:underline"
+              >
+                Ver no mapa <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div className="relative flex h-full min-h-[22rem] flex-col justify-between overflow-hidden rounded-lg border border-white/10 bg-gradient-to-br from-[#0b1430] to-[#05060a] p-6 sm:p-8">
+              <Parallax
+                speed={0.1}
+                className="pointer-events-none absolute -bottom-16 -right-20 w-80 opacity-45"
+              >
+                <PaintBurst className="w-full" seed={21} />
+              </Parallax>
+              <div className="relative">
+                <Truck className="h-8 w-8 text-brand" />
+                <h3 className="mt-4 text-2xl font-extrabold">Atendemos Jundiaí e região</h3>
+                <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/65">
+                  Medição, entrega e instalação no seu endereço. Envie fotos e medidas e receba uma
+                  proposta sem precisar sair de casa.
+                </p>
+              </div>
+              <div className="relative mt-8 space-y-3">
+                <WhatsAppButton className="w-full py-4">Chamar no WhatsApp</WhatsAppButton>
+                <a
+                  href={`https://instagram.com/${INSTAGRAM_HANDLE}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 rounded-md border border-white/20 bg-black/30 px-5 py-3.5 text-sm font-semibold backdrop-blur transition hover:border-white/50"
+                >
+                  @{INSTAGRAM_HANDLE}
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- final cta ---------------- */
+function FinalCta() {
+  return (
+    <section className="relative isolate overflow-hidden py-20 sm:py-28">
+      <Parallax
+        speed={0.12}
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 w-[640px] -translate-x-1/2 -translate-y-1/2 opacity-30 sm:opacity-50"
+      >
+        <PaintBurst className="w-full" seed={33} />
+      </Parallax>
+      <Reveal className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+        <h2 className="text-4xl font-extrabold leading-[1.02] sm:text-6xl">
+          Sua marca merece <span className="text-paint">aparecer</span>
+        </h2>
+        <p className="mx-auto mt-5 max-w-xl text-white/70 sm:text-lg">
+          Conte o que você precisa: fachada, veículo, vitrine ou uma tiragem de personalizados.
+          Respondemos com um orçamento claro.
+        </p>
+        <div className="mt-8 flex justify-center">
+          <WhatsAppButton className="px-8 py-4 text-base">Pedir orçamento agora</WhatsAppButton>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+/* ---------------- footer ---------------- */
+function Footer() {
+  return (
+    <footer className="border-t border-white/10 bg-black pb-28 pt-12 sm:pb-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="divider-paint mb-10" />
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-4">
+            <img
+              src={logo}
+              alt="Scorpions Artes"
+              width={56}
+              height={56}
+              className="h-14 w-14 rounded-full"
+            />
+            <div>
+              <p className="font-[family-name:var(--font-tech)] text-sm tracking-[0.14em]">
+                SCORPIONS ARTES
+              </p>
+              <p className="mt-1 text-xs tracking-[0.3em] text-white/50">COMUNICAÇÃO VISUAL</p>
+            </div>
+          </div>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60" aria-label="Rodapé">
+            {NAV.map((n) => (
+              <a key={n.href} href={n.href} className="hover:text-white">
+                {n.label}
+              </a>
+            ))}
+            <a
+              href={`https://instagram.com/${INSTAGRAM_HANDLE}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
+              Instagram
+            </a>
+          </nav>
+        </div>
+        <p className="mt-8 text-xs leading-relaxed text-white/40">
+          © {new Date().getFullYear()} Scorpions Artes · {CITY} · WhatsApp {PHONE_DISPLAY}. Preços e
+          pacotes exibidos são ilustrativos e serão confirmados.
+        </p>
+        <div className="mt-5 flex items-center gap-3 text-xs leading-relaxed text-white/50">
+          <img
+            src={ryanLogo}
+            alt="Ryan Pereira — Criação de Sites"
+            width={56}
+            height={56}
+            className="h-14 w-14 rounded-lg ring-1 ring-white/10"
+          />
+          <p>
+            Este é um site de demonstração desenvolvido por{" "}
+            <strong className="text-white/80">Ryan Pereira</strong>, criação de sites.
+          </p>
         </div>
       </div>
     </footer>
   );
 }
 
-/* ---------------- Sticky mobile CTA ---------------- */
-function StickyMobileCTA() {
+/* ---------------- floating whatsapp ---------------- */
+function FloatingWhatsApp() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-border bg-background/95 p-2 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] backdrop-blur md:hidden">
-      <a
-        href={`tel:${PHONE_TEL}`}
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-3 py-3 text-sm font-semibold text-primary-foreground"
-      >
-        <Phone className="h-4 w-4" /> Ligar agora
-      </a>
-      <a
-        href={WHATSAPP}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-cta px-3 py-3 text-sm font-bold text-cta-foreground"
-      >
-        <MessageCircle className="h-4 w-4" /> WhatsApp
-      </a>
-    </div>
-  );
-}
-
-/* ---------------- Section header ---------------- */
-function SectionHeader({
-  eyebrow,
-  title,
-  desc,
-  center = false,
-}: {
-  eyebrow: string;
-  title: string;
-  desc?: string;
-  center?: boolean;
-}) {
-  return (
-    <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
-      <span className="text-xs font-semibold uppercase tracking-wider text-brand">{eyebrow}</span>
-      <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
-        {title}
-      </h2>
-      {desc && <p className="mt-3 text-muted-foreground">{desc}</p>}
-    </div>
+    <a
+      href={whatsappLink()}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Pedir orçamento pelo WhatsApp"
+      className="fixed bottom-4 right-4 z-50 flex h-14 items-center gap-2 rounded-full bg-cta pl-4 pr-5 font-bold text-cta-foreground shadow-[0_14px_40px_-8px_rgba(37,211,102,0.8)] transition hover:brightness-110 active:scale-95 sm:bottom-6 sm:right-6"
+      style={{ animation: "pulse-ring 2.2s ease-out infinite" }}
+    >
+      <WhatsAppIcon className="h-7 w-7" />
+      <span className="text-sm">Orçamento</span>
+    </a>
   );
 }
