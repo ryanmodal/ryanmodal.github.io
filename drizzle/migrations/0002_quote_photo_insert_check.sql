@@ -1,0 +1,1 @@
+ALTER POLICY "Visitors upload quote photos" ON storage.objects WITH CHECK (bucket_id = 'quote-photos' AND name ~ '^[a-f0-9-]{36}\.(jpg|png|webp)$');
