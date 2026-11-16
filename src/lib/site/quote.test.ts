@@ -1,4 +1,6 @@
-import { describe, expect, it } from 'bun:test';
+import { describe, it } from 'node:test';
+import { strict as assert } from 'node:assert';
+const expect = (actual: unknown) => ({ toBe: (expected: unknown) => assert.equal(actual, expected), not: { toBe: (expected: unknown) => assert.notEqual(actual, expected) } });
 import { quoteSchema, maskPhone, validatePhoto } from './quote';
 import { business } from './data';
 import { businessSchema } from './seo';
