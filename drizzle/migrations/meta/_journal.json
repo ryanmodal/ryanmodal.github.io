@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1794838734618,
+      "tag": "0000_quote_requests",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794838746907,
+      "tag": "0001_quote_photo_upload",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794839131569,
+      "tag": "0002_quote_photo_insert_check",
+      "breakpoints": true
+    }
+  ]
+}

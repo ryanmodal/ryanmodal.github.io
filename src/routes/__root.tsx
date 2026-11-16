@@ -6,12 +6,14 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import logoAsset from "../assets/logo-modal-esquadrias.jpeg.asset.json";
+import { SiteLayout } from "@/components/site/layout";
 
 function NotFoundComponent() {
   return (
@@ -35,7 +37,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -82,17 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: siteTitle },
-      { name: "description", content: siteDesc },
       { name: "author", content: "Modal Esquadrias" },
       { name: "theme-color", content: "#1a2749" },
-      { property: "og:title", content: siteTitle },
-      { property: "og:description", content: siteDesc },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Modal Esquadrias" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: siteTitle },
-      { name: "twitter:description", content: siteDesc },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -109,31 +105,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         src: "https://widget.etalker.app/webchat/widget.js",
         async: true,
         "data-widget-id": "a0ebdc24595b84d2",
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "Modal Esquadrias",
-          image: "https://modalesquadrias.com.br/og.jpg",
-          telephone: "+55-11-93705-3816",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Av. Alfredo de Paula, 456 - Jardim Luíza",
-            addressLocality: "Franco da Rocha",
-            addressRegion: "SP",
-            postalCode: "07865-210",
-            addressCountry: "BR",
-          },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "5.0",
-            reviewCount: "74",
-          },
-          openingHours: "Mo-Sa 08:00-18:30",
-          priceRange: "$$",
-        }),
       },
     ],
   }),
@@ -162,7 +133,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <SiteLayout><Outlet /></SiteLayout>
     </QueryClientProvider>
   );
 }

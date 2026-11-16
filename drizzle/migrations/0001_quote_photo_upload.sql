@@ -1,0 +1,1 @@
+CREATE POLICY "Visitors upload quote photos" ON storage.objects FOR INSERT TO anon WITH CHECK (bucket_id = 'quote-photos' AND name ~ '^[a-f0-9-]{36}\.(jpg|png|webp)$' AND (metadata->>'size')::bigint <= 5242880 AND metadata->>'mimetype' IN ('image/jpeg','image/png','image/webp'));

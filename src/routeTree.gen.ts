@@ -10,33 +10,237 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BoxParaBanheiroRouteImport } from './routes/box-para-banheiro'
+import { Route as EsquadriasDeAluminioCaieirasRouteImport } from './routes/esquadrias-de-aluminio-caieiras'
+import { Route as EsquadriasDeAluminioCajamarRouteImport } from './routes/esquadrias-de-aluminio-cajamar'
+import { Route as EsquadriasDeAluminioFranciscoMoratoRouteImport } from './routes/esquadrias-de-aluminio-francisco-morato'
+import { Route as EsquadriasDeAluminioFrancoDaRochaRouteImport } from './routes/esquadrias-de-aluminio-franco-da-rocha'
+import { Route as EsquadriasDeAluminioMairiporaRouteImport } from './routes/esquadrias-de-aluminio-mairipora'
+import { Route as FachadasECoberturasRouteImport } from './routes/fachadas-e-coberturas'
+import { Route as GuardaCorpoRouteImport } from './routes/guarda-corpo'
+import { Route as JanelasDeAluminioRouteImport } from './routes/janelas-de-aluminio'
+import { Route as ObrigadoRouteImport } from './routes/obrigado'
+import { Route as OrcamentoRouteImport } from './routes/orcamento'
+import { Route as PortasDeAluminioRouteImport } from './routes/portas-de-aluminio'
+import { Route as PortoesEGradisRouteImport } from './routes/portoes-e-gradis'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SobreRouteImport } from './routes/sobre'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BoxParaBanheiroRoute = BoxParaBanheiroRouteImport.update({
+  id: '/box-para-banheiro',
+  path: '/box-para-banheiro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsquadriasDeAluminioCaieirasRoute =
+  EsquadriasDeAluminioCaieirasRouteImport.update({
+    id: '/esquadrias-de-aluminio-caieiras',
+    path: '/esquadrias-de-aluminio-caieiras',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const EsquadriasDeAluminioCajamarRoute =
+  EsquadriasDeAluminioCajamarRouteImport.update({
+    id: '/esquadrias-de-aluminio-cajamar',
+    path: '/esquadrias-de-aluminio-cajamar',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const EsquadriasDeAluminioFranciscoMoratoRoute =
+  EsquadriasDeAluminioFranciscoMoratoRouteImport.update({
+    id: '/esquadrias-de-aluminio-francisco-morato',
+    path: '/esquadrias-de-aluminio-francisco-morato',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const EsquadriasDeAluminioFrancoDaRochaRoute =
+  EsquadriasDeAluminioFrancoDaRochaRouteImport.update({
+    id: '/esquadrias-de-aluminio-franco-da-rocha',
+    path: '/esquadrias-de-aluminio-franco-da-rocha',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const EsquadriasDeAluminioMairiporaRoute =
+  EsquadriasDeAluminioMairiporaRouteImport.update({
+    id: '/esquadrias-de-aluminio-mairipora',
+    path: '/esquadrias-de-aluminio-mairipora',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FachadasECoberturasRoute = FachadasECoberturasRouteImport.update({
+  id: '/fachadas-e-coberturas',
+  path: '/fachadas-e-coberturas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuardaCorpoRoute = GuardaCorpoRouteImport.update({
+  id: '/guarda-corpo',
+  path: '/guarda-corpo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JanelasDeAluminioRoute = JanelasDeAluminioRouteImport.update({
+  id: '/janelas-de-aluminio',
+  path: '/janelas-de-aluminio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ObrigadoRoute = ObrigadoRouteImport.update({
+  id: '/obrigado',
+  path: '/obrigado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrcamentoRoute = OrcamentoRouteImport.update({
+  id: '/orcamento',
+  path: '/orcamento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortasDeAluminioRoute = PortasDeAluminioRouteImport.update({
+  id: '/portas-de-aluminio',
+  path: '/portas-de-aluminio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortoesEGradisRoute = PortoesEGradisRouteImport.update({
+  id: '/portoes-e-gradis',
+  path: '/portoes-e-gradis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/box-para-banheiro': typeof BoxParaBanheiroRoute
+  '/esquadrias-de-aluminio-caieiras': typeof EsquadriasDeAluminioCaieirasRoute
+  '/esquadrias-de-aluminio-cajamar': typeof EsquadriasDeAluminioCajamarRoute
+  '/esquadrias-de-aluminio-francisco-morato': typeof EsquadriasDeAluminioFranciscoMoratoRoute
+  '/esquadrias-de-aluminio-franco-da-rocha': typeof EsquadriasDeAluminioFrancoDaRochaRoute
+  '/esquadrias-de-aluminio-mairipora': typeof EsquadriasDeAluminioMairiporaRoute
+  '/fachadas-e-coberturas': typeof FachadasECoberturasRoute
+  '/guarda-corpo': typeof GuardaCorpoRoute
+  '/janelas-de-aluminio': typeof JanelasDeAluminioRoute
+  '/obrigado': typeof ObrigadoRoute
+  '/orcamento': typeof OrcamentoRoute
+  '/portas-de-aluminio': typeof PortasDeAluminioRoute
+  '/portoes-e-gradis': typeof PortoesEGradisRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/box-para-banheiro': typeof BoxParaBanheiroRoute
+  '/esquadrias-de-aluminio-caieiras': typeof EsquadriasDeAluminioCaieirasRoute
+  '/esquadrias-de-aluminio-cajamar': typeof EsquadriasDeAluminioCajamarRoute
+  '/esquadrias-de-aluminio-francisco-morato': typeof EsquadriasDeAluminioFranciscoMoratoRoute
+  '/esquadrias-de-aluminio-franco-da-rocha': typeof EsquadriasDeAluminioFrancoDaRochaRoute
+  '/esquadrias-de-aluminio-mairipora': typeof EsquadriasDeAluminioMairiporaRoute
+  '/fachadas-e-coberturas': typeof FachadasECoberturasRoute
+  '/guarda-corpo': typeof GuardaCorpoRoute
+  '/janelas-de-aluminio': typeof JanelasDeAluminioRoute
+  '/obrigado': typeof ObrigadoRoute
+  '/orcamento': typeof OrcamentoRoute
+  '/portas-de-aluminio': typeof PortasDeAluminioRoute
+  '/portoes-e-gradis': typeof PortoesEGradisRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sobre': typeof SobreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/box-para-banheiro': typeof BoxParaBanheiroRoute
+  '/esquadrias-de-aluminio-caieiras': typeof EsquadriasDeAluminioCaieirasRoute
+  '/esquadrias-de-aluminio-cajamar': typeof EsquadriasDeAluminioCajamarRoute
+  '/esquadrias-de-aluminio-francisco-morato': typeof EsquadriasDeAluminioFranciscoMoratoRoute
+  '/esquadrias-de-aluminio-franco-da-rocha': typeof EsquadriasDeAluminioFrancoDaRochaRoute
+  '/esquadrias-de-aluminio-mairipora': typeof EsquadriasDeAluminioMairiporaRoute
+  '/fachadas-e-coberturas': typeof FachadasECoberturasRoute
+  '/guarda-corpo': typeof GuardaCorpoRoute
+  '/janelas-de-aluminio': typeof JanelasDeAluminioRoute
+  '/obrigado': typeof ObrigadoRoute
+  '/orcamento': typeof OrcamentoRoute
+  '/portas-de-aluminio': typeof PortasDeAluminioRoute
+  '/portoes-e-gradis': typeof PortoesEGradisRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/box-para-banheiro'
+    | '/esquadrias-de-aluminio-caieiras'
+    | '/esquadrias-de-aluminio-cajamar'
+    | '/esquadrias-de-aluminio-francisco-morato'
+    | '/esquadrias-de-aluminio-franco-da-rocha'
+    | '/esquadrias-de-aluminio-mairipora'
+    | '/fachadas-e-coberturas'
+    | '/guarda-corpo'
+    | '/janelas-de-aluminio'
+    | '/obrigado'
+    | '/orcamento'
+    | '/portas-de-aluminio'
+    | '/portoes-e-gradis'
+    | '/sitemap.xml'
+    | '/sobre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/box-para-banheiro'
+    | '/esquadrias-de-aluminio-caieiras'
+    | '/esquadrias-de-aluminio-cajamar'
+    | '/esquadrias-de-aluminio-francisco-morato'
+    | '/esquadrias-de-aluminio-franco-da-rocha'
+    | '/esquadrias-de-aluminio-mairipora'
+    | '/fachadas-e-coberturas'
+    | '/guarda-corpo'
+    | '/janelas-de-aluminio'
+    | '/obrigado'
+    | '/orcamento'
+    | '/portas-de-aluminio'
+    | '/portoes-e-gradis'
+    | '/sitemap.xml'
+    | '/sobre'
+  id:
+    | '__root__'
+    | '/'
+    | '/box-para-banheiro'
+    | '/esquadrias-de-aluminio-caieiras'
+    | '/esquadrias-de-aluminio-cajamar'
+    | '/esquadrias-de-aluminio-francisco-morato'
+    | '/esquadrias-de-aluminio-franco-da-rocha'
+    | '/esquadrias-de-aluminio-mairipora'
+    | '/fachadas-e-coberturas'
+    | '/guarda-corpo'
+    | '/janelas-de-aluminio'
+    | '/obrigado'
+    | '/orcamento'
+    | '/portas-de-aluminio'
+    | '/portoes-e-gradis'
+    | '/sitemap.xml'
+    | '/sobre'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BoxParaBanheiroRoute: typeof BoxParaBanheiroRoute
+  EsquadriasDeAluminioCaieirasRoute: typeof EsquadriasDeAluminioCaieirasRoute
+  EsquadriasDeAluminioCajamarRoute: typeof EsquadriasDeAluminioCajamarRoute
+  EsquadriasDeAluminioFranciscoMoratoRoute: typeof EsquadriasDeAluminioFranciscoMoratoRoute
+  EsquadriasDeAluminioFrancoDaRochaRoute: typeof EsquadriasDeAluminioFrancoDaRochaRoute
+  EsquadriasDeAluminioMairiporaRoute: typeof EsquadriasDeAluminioMairiporaRoute
+  FachadasECoberturasRoute: typeof FachadasECoberturasRoute
+  GuardaCorpoRoute: typeof GuardaCorpoRoute
+  JanelasDeAluminioRoute: typeof JanelasDeAluminioRoute
+  ObrigadoRoute: typeof ObrigadoRoute
+  OrcamentoRoute: typeof OrcamentoRoute
+  PortasDeAluminioRoute: typeof PortasDeAluminioRoute
+  PortoesEGradisRoute: typeof PortoesEGradisRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SobreRoute: typeof SobreRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +252,133 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/box-para-banheiro': {
+      id: '/box-para-banheiro'
+      path: '/box-para-banheiro'
+      fullPath: '/box-para-banheiro'
+      preLoaderRoute: typeof BoxParaBanheiroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/esquadrias-de-aluminio-caieiras': {
+      id: '/esquadrias-de-aluminio-caieiras'
+      path: '/esquadrias-de-aluminio-caieiras'
+      fullPath: '/esquadrias-de-aluminio-caieiras'
+      preLoaderRoute: typeof EsquadriasDeAluminioCaieirasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/esquadrias-de-aluminio-cajamar': {
+      id: '/esquadrias-de-aluminio-cajamar'
+      path: '/esquadrias-de-aluminio-cajamar'
+      fullPath: '/esquadrias-de-aluminio-cajamar'
+      preLoaderRoute: typeof EsquadriasDeAluminioCajamarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/esquadrias-de-aluminio-francisco-morato': {
+      id: '/esquadrias-de-aluminio-francisco-morato'
+      path: '/esquadrias-de-aluminio-francisco-morato'
+      fullPath: '/esquadrias-de-aluminio-francisco-morato'
+      preLoaderRoute: typeof EsquadriasDeAluminioFranciscoMoratoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/esquadrias-de-aluminio-franco-da-rocha': {
+      id: '/esquadrias-de-aluminio-franco-da-rocha'
+      path: '/esquadrias-de-aluminio-franco-da-rocha'
+      fullPath: '/esquadrias-de-aluminio-franco-da-rocha'
+      preLoaderRoute: typeof EsquadriasDeAluminioFrancoDaRochaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/esquadrias-de-aluminio-mairipora': {
+      id: '/esquadrias-de-aluminio-mairipora'
+      path: '/esquadrias-de-aluminio-mairipora'
+      fullPath: '/esquadrias-de-aluminio-mairipora'
+      preLoaderRoute: typeof EsquadriasDeAluminioMairiporaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fachadas-e-coberturas': {
+      id: '/fachadas-e-coberturas'
+      path: '/fachadas-e-coberturas'
+      fullPath: '/fachadas-e-coberturas'
+      preLoaderRoute: typeof FachadasECoberturasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guarda-corpo': {
+      id: '/guarda-corpo'
+      path: '/guarda-corpo'
+      fullPath: '/guarda-corpo'
+      preLoaderRoute: typeof GuardaCorpoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/janelas-de-aluminio': {
+      id: '/janelas-de-aluminio'
+      path: '/janelas-de-aluminio'
+      fullPath: '/janelas-de-aluminio'
+      preLoaderRoute: typeof JanelasDeAluminioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/obrigado': {
+      id: '/obrigado'
+      path: '/obrigado'
+      fullPath: '/obrigado'
+      preLoaderRoute: typeof ObrigadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orcamento': {
+      id: '/orcamento'
+      path: '/orcamento'
+      fullPath: '/orcamento'
+      preLoaderRoute: typeof OrcamentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portas-de-aluminio': {
+      id: '/portas-de-aluminio'
+      path: '/portas-de-aluminio'
+      fullPath: '/portas-de-aluminio'
+      preLoaderRoute: typeof PortasDeAluminioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portoes-e-gradis': {
+      id: '/portoes-e-gradis'
+      path: '/portoes-e-gradis'
+      fullPath: '/portoes-e-gradis'
+      preLoaderRoute: typeof PortoesEGradisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BoxParaBanheiroRoute: BoxParaBanheiroRoute,
+  EsquadriasDeAluminioCaieirasRoute: EsquadriasDeAluminioCaieirasRoute,
+  EsquadriasDeAluminioCajamarRoute: EsquadriasDeAluminioCajamarRoute,
+  EsquadriasDeAluminioFranciscoMoratoRoute:
+    EsquadriasDeAluminioFranciscoMoratoRoute,
+  EsquadriasDeAluminioFrancoDaRochaRoute:
+    EsquadriasDeAluminioFrancoDaRochaRoute,
+  EsquadriasDeAluminioMairiporaRoute: EsquadriasDeAluminioMairiporaRoute,
+  FachadasECoberturasRoute: FachadasECoberturasRoute,
+  GuardaCorpoRoute: GuardaCorpoRoute,
+  JanelasDeAluminioRoute: JanelasDeAluminioRoute,
+  ObrigadoRoute: ObrigadoRoute,
+  OrcamentoRoute: OrcamentoRoute,
+  PortasDeAluminioRoute: PortasDeAluminioRoute,
+  PortoesEGradisRoute: PortoesEGradisRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
