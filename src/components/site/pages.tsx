@@ -24,6 +24,6 @@ export function QuotePage() {
 }
 export function ThankYouPage() {
   const [confirmed, setConfirmed] = useState(false);
-  useEffect(() => { const saved = sessionStorage.getItem('modal-quote-confirmed') === '1'; setConfirmed(saved); if (saved) { track('quote_confirmation_view'); sessionStorage.removeItem('modal-quote-confirmed'); } }, []);
+  useEffect(() => { const saved = sessionStorage.getItem('modal-quote-confirmed') === '1'; setConfirmed(saved); if (saved && sessionStorage.getItem('modal-quote-view-tracked') !== '1') { track('quote_confirmation_view'); sessionStorage.setItem('modal-quote-view-tracked', '1'); } }, []);
   return <><Breadcrumbs title="Obrigado" /><section className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6"><CheckCircle2 aria-hidden className="mx-auto size-14 text-brand" /><h1 className="mt-6 text-4xl font-extrabold">{confirmed ? 'Pedido enviado. Obrigado!' : 'Obrigado pelo seu interesse!'}</h1><p className="mt-5 text-lg text-muted-foreground">{confirmed ? 'Seu pedido foi registrado. Nossa equipe retornará em até 24h.' : 'Para receber uma proposta, envie seu pedido pela página de orçamento.'}</p><div className="mt-8 flex flex-wrap justify-center gap-3"><Button asChild><Link to="/orcamento">Solicitar orçamento</Link></Button><Button asChild variant="outline"><a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp</a></Button><Button asChild variant="link"><Link to="/">Voltar ao início</Link></Button></div></section></>;
 }

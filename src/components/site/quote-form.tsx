@@ -26,6 +26,7 @@ export function QuoteForm({ compact = false, service }: { compact?: boolean; ser
       if (!response.ok) { setError(response.error || 'Tente novamente.'); return; }
       track('quote_submit', { service: String(result.fd.get('service')) });
       sessionStorage.setItem('modal-quote-confirmed', '1');
+      sessionStorage.removeItem('modal-quote-view-tracked');
       await navigate({ to: '/obrigado' });
     } catch { setError('Não foi possível enviar. Tente novamente ou use o WhatsApp.'); }
     finally { setLoading(false); }

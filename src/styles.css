@@ -106,6 +106,10 @@
 }
 
 .hero-overlay { background: var(--gradient-hero); }
+main { min-width: 0; overflow-x: clip; }
+main section { min-width: 0; }
+main h1, main h2, main h3, main p { overflow-wrap: break-word; }
+.comparison-placeholder { width: 100%; min-width: 0; }
 .skip-link { position: fixed; top: -100px; left: 16px; z-index: 100; padding: 12px 16px; background: var(--primary); color: var(--primary-foreground); }
 .skip-link:focus { top: 12px; }
 :focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
